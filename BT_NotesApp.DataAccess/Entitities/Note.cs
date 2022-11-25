@@ -1,16 +1,41 @@
-﻿using System;
+﻿
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace BT_NotesApp.DataAccess.Entities
 {
-	public class Note
+    [Table("Note")]
+    public class Note
 	{
-		public Note()
-		{
-		}
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+        [Column(Order = 1)]
+        public long NoteId { get; set; }
 
-		public long NodeId { get; set; }
-		public string Title { get; set; }
-		public string Description { get; set; }
-		public string Contents { get; set; }
+        [Column(Order = 2)]
+        [MaxLength(50)]
+        public string Title { get; set; }
+
+        [Column(Order = 3)]
+        [MaxLength(200)]
+        public string Description { get; set; }
+
+        [Column(Order = 4)]
+        public string Contents { get; set; }
+
+        [Column(Order = 5)]
+        public bool IsActive { get; set; }
+
+        [Column(Order = 6)]
+        public DateTime CreatedDate { get; set; }
+
+        [Column(Order = 7)]
+        public DateTime LastUpdatedDate { get; set; }
+
+
+        [Column(Order = 8)]
+        [ForeignKey("User")]
 		public long UserId { get; set; }
 	}
 }

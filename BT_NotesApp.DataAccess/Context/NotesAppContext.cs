@@ -11,6 +11,7 @@ namespace BT_NotesApp.DataAccess.Context
         }
 
         public DbSet<Note> Notes { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
 
