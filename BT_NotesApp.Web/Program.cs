@@ -1,18 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
-
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
-//builder.Services.AddTransient<>
-
-var configuration = new ConfigurationBuilder()
-        .AddJsonFile("appsettings.json")
-        .AddEnvironmentVariables()
-        .Build();
-builder.Services.Configure<Program>(configuration);
-builder.Services.AddSingleton<IConfiguration>(provider => configuration);
 
 var app = builder.Build();
 

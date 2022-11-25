@@ -1,6 +1,6 @@
 ﻿{
-  "short_name": "BT_NotesApp",
-  "name": "BT_NotesApp",
+  "short_name": "BT_NotesApp.Web",
+  "name": "BT_NotesApp.Web",
   "icons": [
     {
       "src": "favicon.ico",

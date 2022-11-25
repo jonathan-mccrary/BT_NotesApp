@@ -1,5 +1,5 @@
 {
-  "name": "bt_notesapp",
+  "name": "bt_notesapp.web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

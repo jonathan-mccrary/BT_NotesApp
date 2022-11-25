@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BT_NotesApp.Controllers;
+namespace BT_NotesApp.Web.Controllers;
 
 [ApiController]
 [Route("[controller]")]

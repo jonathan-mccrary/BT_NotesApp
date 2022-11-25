@@ -1,4 +1,4 @@
-﻿namespace BT_NotesApp;
+﻿namespace BT_NotesApp.Web;
 
 public class WeatherForecast
 {
