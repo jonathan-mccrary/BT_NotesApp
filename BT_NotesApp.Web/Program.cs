@@ -1,6 +1,9 @@
 ﻿using BT_NotesApp.DataAccess.Context;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using BT_NotesApp.DataAccess.Contracts;
+using BT_NotesApp.DataAccess.Operations;
+using BT_NotesApp.Domain.Contracts.Logic;
+using BT_NotesApp.Domain.Logic;
+using NLog.Web;
 
 internal class Program
 {
@@ -19,11 +22,22 @@ internal class Program
 
         builder.Services.Configure<Program>(_configuration);
         builder.Services.AddSingleton(provider => _configuration);
+        builder.Services.AddTransient<NotesAppContext>();
+        builder.Services.AddTransient<INotesDA, NotesDA>();
+        builder.Services.AddTransient<INotesLogic, NotesLogic>();
 
-        var connection = _configuration.GetConnectionString("BoomTownDb");
-        builder.Services.AddDbContext<NotesAppContext>(options =>
-            options.UseSqlServer(connection)
-        );
+        builder.Services.AddLogging(logging =>
+        {
+            logging.ClearProviders();
+            logging.SetMinimumLevel(LogLevel.Trace);
+            logging.AddDebug();
+            logging.AddNLog("nlog.config");
+        });
+
+        //var connection = _configuration.GetConnectionString("BoomTownDb");
+        //builder.Services.AddDbContext<NotesAppContext>(options =>
+        //    options.UseSqlServer(connection)
+        //);
 
         var app = builder.Build();
 

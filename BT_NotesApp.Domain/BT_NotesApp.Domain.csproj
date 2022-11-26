@@ -7,9 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="DTOs\" />
+    <None Remove="Logic\" />
+    <None Remove="Contracts\" />
+    <None Remove="Contracts\Logic\" />
+    <None Remove="Mappers\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTOs\" />
+    <Folder Include="Logic\" />
+    <Folder Include="Contracts\" />
+    <Folder Include="Contracts\Logic\" />
+    <Folder Include="Mappers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BT_NotesApp.DataAccess\BT_NotesApp.DataAccess.csproj" />
   </ItemGroup>
 </Project>

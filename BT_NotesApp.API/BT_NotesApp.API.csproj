@@ -18,6 +18,9 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
+    <PackageReference Include="NLog" Version="5.0.5" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.1.0" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.1.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +28,9 @@
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Relational.Design" />
+    <None Remove="NLog" />
+    <None Remove="NLog.Extensions.Logging" />
+    <None Remove="NLog.Web.AspNetCore" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BT_NotesApp.DataAccess\BT_NotesApp.DataAccess.csproj">
