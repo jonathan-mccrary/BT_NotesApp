@@ -1,11 +1,9 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1704.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.Domain", "BT_NotesApp.Domain\BT_NotesApp.Domain.csproj", "{6A46B495-762A-432F-A21C-7D22B3BAC322}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.Repository", "BT_NotesApp.DataAccess\BT_NotesApp.Repository.csproj", "{36A956D1-8C9C-494E-9D6D-B6350FB45D7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.API", "BT_NotesApp.API\BT_NotesApp.API.csproj", "{7D7AEC38-CCAF-493E-8231-5CB71E4B0A6C}"
 EndProject
@@ -16,7 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.Logging", "BT_NotesApp.Utility\BT_NotesApp.Logging.csproj", "{5FD69D95-B8E5-4FD8-BD80-9F871136050C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.Logging", "BT_NotesApp.Logging\BT_NotesApp.Logging.csproj", "{F35F5CDC-5493-4398-838C-1B589043AACF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.Repository", "BT_NotesApp.Repository\BT_NotesApp.Repository.csproj", "{D3575799-7332-42DF-99FE-C93AEE126C22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +28,6 @@ Global
 		{6A46B495-762A-432F-A21C-7D22B3BAC322}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A46B495-762A-432F-A21C-7D22B3BAC322}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A46B495-762A-432F-A21C-7D22B3BAC322}.Release|Any CPU.Build.0 = Release|Any CPU
-		{36A956D1-8C9C-494E-9D6D-B6350FB45D7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{36A956D1-8C9C-494E-9D6D-B6350FB45D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36A956D1-8C9C-494E-9D6D-B6350FB45D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{36A956D1-8C9C-494E-9D6D-B6350FB45D7C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7D7AEC38-CCAF-493E-8231-5CB71E4B0A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7D7AEC38-CCAF-493E-8231-5CB71E4B0A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D7AEC38-CCAF-493E-8231-5CB71E4B0A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -40,10 +36,22 @@ Global
 		{55FFE23B-9290-496E-88F5-E64E71A1304D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55FFE23B-9290-496E-88F5-E64E71A1304D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55FFE23B-9290-496E-88F5-E64E71A1304D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5FD69D95-B8E5-4FD8-BD80-9F871136050C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5FD69D95-B8E5-4FD8-BD80-9F871136050C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5FD69D95-B8E5-4FD8-BD80-9F871136050C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5FD69D95-B8E5-4FD8-BD80-9F871136050C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9D11479-F074-4683-87E7-69148B240914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9D11479-F074-4683-87E7-69148B240914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9D11479-F074-4683-87E7-69148B240914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9D11479-F074-4683-87E7-69148B240914}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F35F5CDC-5493-4398-838C-1B589043AACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F35F5CDC-5493-4398-838C-1B589043AACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F35F5CDC-5493-4398-838C-1B589043AACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F35F5CDC-5493-4398-838C-1B589043AACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EF661EC-8E0C-4206-BF97-49006D3517B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EF661EC-8E0C-4206-BF97-49006D3517B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EF661EC-8E0C-4206-BF97-49006D3517B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EF661EC-8E0C-4206-BF97-49006D3517B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3575799-7332-42DF-99FE-C93AEE126C22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3575799-7332-42DF-99FE-C93AEE126C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3575799-7332-42DF-99FE-C93AEE126C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3575799-7332-42DF-99FE-C93AEE126C22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
