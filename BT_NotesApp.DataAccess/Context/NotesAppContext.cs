@@ -1,9 +1,9 @@
 ﻿using System;
-using BT_NotesApp.DataAccess.Contracts;
-using BT_NotesApp.DataAccess.Entities;
+using BT_NotesApp.Repository.Contracts;
+using BT_NotesApp.Repository.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BT_NotesApp.DataAccess.Context
+namespace BT_NotesApp.Repository.Context
 {
     public class NotesAppContext : DbContext
     {

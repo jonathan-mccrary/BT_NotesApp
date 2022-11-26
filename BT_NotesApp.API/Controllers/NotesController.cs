@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BT_NotesApp.DataAccess.Entities;
+using BT_NotesApp.Repository.Entities;
 using BT_NotesApp.Domain.Contracts.DTOs;
 using BT_NotesApp.Domain.Contracts.Logic;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +15,13 @@ namespace BT_NotesApp.API.Controllers
     public class NotesController : Controller
     {
         private INotesLogic _notesLogic;
-        public NotesController(INotesLogic notesLogic)
+        private ILogger _logger;
+        public NotesController(
+            INotesLogic notesLogic,
+            ILogger logger)
         {
             _notesLogic = notesLogic;
+            _logger = logger;
         }
 
         //List<Note> GetAllNotes();
@@ -32,6 +36,7 @@ namespace BT_NotesApp.API.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Error at GetAllNotesAsync: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -46,6 +51,7 @@ namespace BT_NotesApp.API.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Error at GetAllNotes: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }

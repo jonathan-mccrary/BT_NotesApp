@@ -2,20 +2,10 @@
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace BT_NotesApp.DataAccess.Context
+namespace BT_NotesApp.Repository.Context
 {
 	public class NotesAppContextFactory : IDesignTimeDbContextFactory<NotesAppContext>
     {
-		public NotesAppContextFactory()
-		{
-		}
-
-        //private readonly IConfiguration _configuration;
-        //public NotesAppContextFactory(IConfiguration configuration)
-        //{
-        //    _configuration = configuration;
-        //}
-
         public NotesAppContext CreateDbContext(string[] args)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()

@@ -14,13 +14,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotNet.NLog.NetCore" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
-    <PackageReference Include="NLog" Version="5.0.5" />
-    <PackageReference Include="NLog.Extensions.Logging" Version="5.1.0" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="5.1.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +37,9 @@
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
     <ProjectReference Include="..\BT_NotesApp.Domain\BT_NotesApp.Domain.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\BT_NotesApp.Utility\BT_NotesApp.Logging.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>

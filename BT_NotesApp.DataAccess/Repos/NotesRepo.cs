@@ -1,15 +1,15 @@
 ﻿using System;
-using BT_NotesApp.DataAccess.Context;
-using BT_NotesApp.DataAccess.Contracts;
-using BT_NotesApp.DataAccess.Entities;
+using BT_NotesApp.Repository.Context;
+using BT_NotesApp.Repository.Contracts;
+using BT_NotesApp.Repository.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BT_NotesApp.DataAccess.Operations
+namespace BT_NotesApp.Repository.Operations
 {
-	public class NotesDA : INotesDA
+	public class NotesRepo : INotesRepo
 	{
-        private NotesAppContext _context;
-        public NotesDA(NotesAppContext context)
+        private readonly NotesAppContext _context;
+        public NotesRepo(NotesAppContext context)
 		{
             _context = context;
         }
@@ -188,9 +188,5 @@ namespace BT_NotesApp.DataAccess.Operations
                 await _context.SaveChangesAsync();
             }
         }
-
-        
-
-        
     }
 }

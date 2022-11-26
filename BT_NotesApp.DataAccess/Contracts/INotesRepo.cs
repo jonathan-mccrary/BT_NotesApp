@@ -1,9 +1,9 @@
 ﻿using System;
-using BT_NotesApp.DataAccess.Entities;
+using BT_NotesApp.Repository.Entities;
 
-namespace BT_NotesApp.DataAccess.Contracts
+namespace BT_NotesApp.Repository.Contracts
 {
-    public interface INotesDA
+    public interface INotesRepo
     {
         List<Note> GetAllNotes();
         List<Note> GetAllActiveNotes();

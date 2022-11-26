@@ -5,7 +5,7 @@ VisualStudioVersion = 25.0.1704.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.Domain", "BT_NotesApp.Domain\BT_NotesApp.Domain.csproj", "{6A46B495-762A-432F-A21C-7D22B3BAC322}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.DataAccess", "BT_NotesApp.DataAccess\BT_NotesApp.DataAccess.csproj", "{36A956D1-8C9C-494E-9D6D-B6350FB45D7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.Repository", "BT_NotesApp.DataAccess\BT_NotesApp.Repository.csproj", "{36A956D1-8C9C-494E-9D6D-B6350FB45D7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.API", "BT_NotesApp.API\BT_NotesApp.API.csproj", "{7D7AEC38-CCAF-493E-8231-5CB71E4B0A6C}"
 EndProject
@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.Logging", "BT_NotesApp.Utility\BT_NotesApp.Logging.csproj", "{5FD69D95-B8E5-4FD8-BD80-9F871136050C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{55FFE23B-9290-496E-88F5-E64E71A1304D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55FFE23B-9290-496E-88F5-E64E71A1304D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55FFE23B-9290-496E-88F5-E64E71A1304D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FD69D95-B8E5-4FD8-BD80-9F871136050C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FD69D95-B8E5-4FD8-BD80-9F871136050C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FD69D95-B8E5-4FD8-BD80-9F871136050C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FD69D95-B8E5-4FD8-BD80-9F871136050C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
