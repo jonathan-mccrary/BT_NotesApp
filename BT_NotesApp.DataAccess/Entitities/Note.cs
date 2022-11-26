@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BT_NotesApp.DataAccess.Entities
+namespace BT_NotesApp.Repository.Entities
 {
     [Table("Note")]
     public class Note

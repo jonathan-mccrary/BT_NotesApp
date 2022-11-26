@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BTNotesApp.DataAccess.Migrations
+namespace BTNotesApp.Repository.Migrations
 {
     /// <inheritdoc />
     public partial class initial : Migration

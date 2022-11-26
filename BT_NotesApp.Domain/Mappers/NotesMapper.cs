@@ -1,5 +1,5 @@
 ﻿using System;
-using BT_NotesApp.DataAccess.Entities;
+using BT_NotesApp.Repository.Entities;
 using BT_NotesApp.Domain.Contracts.DTOs;
 using BT_NotesApp.Domain.Models;
 

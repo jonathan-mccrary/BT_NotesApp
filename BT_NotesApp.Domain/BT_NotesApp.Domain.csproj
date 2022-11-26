@@ -19,6 +19,7 @@
     <Folder Include="Mappers\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BT_NotesApp.DataAccess\BT_NotesApp.DataAccess.csproj" />
+    <ProjectReference Include="..\BT_NotesApp.Utility\BT_NotesApp.Logging.csproj" />
+    <ProjectReference Include="..\BT_NotesApp.DataAccess\BT_NotesApp.Repository.csproj" />
   </ItemGroup>
 </Project>
