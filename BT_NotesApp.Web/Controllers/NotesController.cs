@@ -9,7 +9,7 @@ namespace BT_NotesApp.Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class NotesController : Controller
+    public class NotesController : ControllerBase
     {
         private readonly INotesService _notesService;
         private readonly ILogger<NotesController> _logger;
@@ -21,10 +21,10 @@ namespace BT_NotesApp.Web.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
 
         [HttpGet]
         public List<INoteDTO> GetAllNotes()

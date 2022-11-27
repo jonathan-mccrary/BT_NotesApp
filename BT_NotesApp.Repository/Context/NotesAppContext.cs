@@ -1,6 +1,5 @@
 ﻿using System;
-using BT_NotesApp.Repository.Contracts;
-using BT_NotesApp.Repository.Entities;
+using BT_NotesApp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BT_NotesApp.Repository.Context
@@ -12,7 +11,6 @@ namespace BT_NotesApp.Repository.Context
         }
 
         public DbSet<Note> Notes { get; set; }
-        public DbSet<User> Users { get; set; }
     }
 }
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BT_NotesApp.Repository.Entities
+namespace BT_NotesApp.Domain.Entities
 {
     [Table("Note")]
     public class Note
@@ -22,6 +22,7 @@ namespace BT_NotesApp.Repository.Entities
         public string Description { get; set; }
 
         [Column(Order = 4)]
+        [MaxLength(2000)]
         public string Contents { get; set; }
 
         [Column(Order = 5)]
@@ -32,11 +33,6 @@ namespace BT_NotesApp.Repository.Entities
 
         [Column(Order = 7)]
         public DateTime LastUpdatedDate { get; set; }
-
-
-        [Column(Order = 8)]
-        [ForeignKey("User")]
-		public long UserId { get; set; }
 	}
 }
 

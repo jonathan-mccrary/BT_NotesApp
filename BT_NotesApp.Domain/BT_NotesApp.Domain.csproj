@@ -9,13 +9,16 @@
   <ItemGroup>
     <None Remove="Contracts\" />
     <None Remove="Mappers\" />
+    <None Remove="Entitities\" />
+    <None Remove="Contracts\Repos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Contracts\" />
     <Folder Include="Mappers\" />
+    <Folder Include="Entitities\" />
+    <Folder Include="Contracts\Repos\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BT_NotesApp.Repository\BT_NotesApp.Repository.csproj" />
     <ProjectReference Include="..\BT_NotesApp.Logging\BT_NotesApp.Logging.csproj" />
   </ItemGroup>
 </Project>

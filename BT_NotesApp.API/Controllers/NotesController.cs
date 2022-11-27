@@ -58,46 +58,6 @@ namespace BT_NotesApp.API.Controllers
         }
 
         /// <summary>
-        /// GET api/Notes/User/5
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        [HttpGet("User/{userId}")]
-        public async Task<IActionResult> GetAllNotesForUserAsync(long userId)
-        {
-            try
-            {
-                var notes = await _notesLogic.GetAllNotesForUserAsync(userId);
-                return Ok(notes);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error at GetAllNotesForUserAsync: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
-        }
-
-        /// <summary>
-        /// GET api/Notes/Active/User/5
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        [HttpGet("Active/User/{userId}")]
-        public async Task<IActionResult> GetAllActiveNotesForUserAsync(long userId)
-        {
-            try
-            {
-                var notes = await _notesLogic.GetAllActiveNotesForUserAsync(userId);
-                return Ok(notes);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error at GetAllActiveNotesForUserAsync: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
-        }
-
-        /// <summary>
         /// GET api/Notes/Search/{keyword}
         /// </summary>
         /// <param name="keyword"></param>
@@ -108,27 +68,6 @@ namespace BT_NotesApp.API.Controllers
             try
             {
                 var notes = await _notesLogic.SearchNotesAsync(keyword);
-                return Ok(notes);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error at GetAllActiveNotesForUserAsync: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
-        }
-
-        /// <summary>
-        /// GET api/Notes/Search/{keyword}/User/{userId}
-        /// </summary>
-        /// <param name="keyword"></param>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        [HttpGet("Search/{keyword}/User/{userId}")]
-        public async Task<IActionResult> SearchNotesForUser(string keyword, long userId)
-        {
-            try
-            {
-                var notes = await _notesLogic.SearchNotesForUserAsync(keyword, userId);
                 return Ok(notes);
             }
             catch (Exception ex)
@@ -164,7 +103,6 @@ namespace BT_NotesApp.API.Controllers
         /// <param name="value"></param>
         /// <returns></returns>
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddNoteAsync([FromBody]NoteDTO value)
         {
             try

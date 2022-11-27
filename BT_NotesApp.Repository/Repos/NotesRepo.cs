@@ -1,11 +1,11 @@
 ﻿using System;
+using BT_NotesApp.Domain.Contracts.Repos;
+using BT_NotesApp.Domain.Entities;
 using BT_NotesApp.Repository.Context;
-using BT_NotesApp.Repository.Contracts;
-using BT_NotesApp.Repository.Entities;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace BT_NotesApp.Repository.Operations
+namespace BT_NotesApp.Repository.Repos
 {
 	public class NotesRepo : INotesRepo
 	{
@@ -34,28 +34,6 @@ namespace BT_NotesApp.Repository.Operations
         }
 
         /// <summary>
-        /// Get all notes for a given userId
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        public async Task<List<Note>> GetAllNotesForUserAsync(long userId)
-        {
-            return await _context.Notes.Where(p => p.UserId == userId).ToListAsync();
-        }
-
-        /// <summary>
-        /// Get all active notes for a given user
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        public async Task<List<Note>> GetAllActiveNotesForUserAsync(long userId)
-        {
-            return await _context.Notes.Where(p =>
-                p.UserId == userId
-                && p.IsActive == true).ToListAsync();
-        }
-
-        /// <summary>
         /// Search notes based on a keyword
         /// </summary>
         /// <param name="keyword"></param>
@@ -66,24 +44,6 @@ namespace BT_NotesApp.Repository.Operations
                 EF.Functions.Like(p.Contents.ToLower(), "%" + keyword.ToLower() + "%")
                 || EF.Functions.Like(p.Title.ToLower(), "%" + keyword.ToLower() + "%")
                 || EF.Functions.Like(p.Description.ToLower(), "%" + keyword.ToLower() + "%"))
-                .ToListAsync();
-        }
-
-        /// <summary>
-        /// search notes based on a keyword and a given user
-        /// </summary>
-        /// <param name="keyword"></param>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        public async Task<List<Note>> SearchNotesForUserAsync(string keyword, long userId)
-        {
-            return await _context.Notes.Where(p =>
-                (
-                    EF.Functions.Like(p.Contents.ToLower(), "%" + keyword.ToLower() + "%")
-                    || EF.Functions.Like(p.Title.ToLower(), "%" + keyword.ToLower() + "%")
-                    || EF.Functions.Like(p.Description.ToLower(), "%" + keyword.ToLower() + "%")
-                )
-                && p.UserId == userId)
                 .ToListAsync();
         }
 

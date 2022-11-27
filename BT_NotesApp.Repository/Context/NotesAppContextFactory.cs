@@ -13,12 +13,13 @@ namespace BT_NotesApp.Repository.Context
                 .AddJsonFile("appsettings.json")
                 .Build();
 
+            var connString_SQLite = configuration.GetConnectionString("BoomTownDb_SQLite");
+            var connString_SQLServer = configuration.GetConnectionString("BoomTownDb_SQLServer");
             var builder = new DbContextOptionsBuilder<NotesAppContext>();
-            var connectionString = configuration.GetConnectionString("BoomTownDb");
-            builder.UseSqlServer(connectionString);
+            builder.UseSqlite(connString_SQLite);
+            //builder.UseSqlServer(connString_SQLServer);
 
             return new NotesAppContext(builder.Options);
         }
     }
 }
-

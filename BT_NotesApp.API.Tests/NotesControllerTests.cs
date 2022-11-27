@@ -69,58 +69,6 @@ public class NotesControllerTests : IDisposable
     }
 
     [Theory]
-    [InlineData(1,0)]
-    [InlineData(10,1)]
-    [InlineData(100,10)]
-    public async void GetAllNotesForUserAsync_Test(int count, int userId)
-    {
-        //arrange
-        var notes = GetSampleNotes(count);
-        _mockNotesLogic.Setup(x => x.GetAllNotesForUserAsync(userId))
-            .ReturnsAsync(notes.Where(p => p.UserId == userId).ToList());
-
-        //act
-        var actionResult = await _notesController.GetAllNotesForUserAsync(userId);
-        var okResult = actionResult as OkObjectResult;
-        var actual = okResult?.Value as List<INoteDTO>;
-
-        //assert
-        Assert.NotNull(actionResult);
-        Assert.NotNull(okResult);
-        Assert.NotNull(actual);
-        Assert.Equal(notes.Where(p => p.UserId == userId).ToList().Count, actual.Count);
-    }
-
-    [Theory]
-    [InlineData(1, 1)]
-    [InlineData(10, 2)]
-    [InlineData(100, 3)]
-    public async void GetAllActiveNotesForUserAsync_Test(int count, int userId)
-    {
-        //arrange
-        var notes = GetSampleNotes(count);
-        _mockNotesLogic.Setup(x => x.GetAllActiveNotesForUserAsync(userId))
-            .ReturnsAsync(notes.Where(p =>
-                p.UserId == userId
-                && p.IsActive == true
-            ).ToList());
-
-        //act
-        var actionResult = await _notesController.GetAllActiveNotesForUserAsync(userId);
-        var okResult = actionResult as OkObjectResult;
-        var actual = okResult?.Value as List<INoteDTO>;
-
-        //assert
-        Assert.NotNull(actionResult);
-        Assert.NotNull(okResult);
-        Assert.NotNull(actual);
-        Assert.Equal(notes.Where(p =>
-            p.UserId == userId
-            && p.IsActive == true
-            ).ToList().Count, actual.Count);
-    }
-
-    [Theory]
     [InlineData(1)]
     [InlineData(10)]
     [InlineData(100)]
@@ -177,8 +125,7 @@ public class NotesControllerTests : IDisposable
                 IsActive = i % 2 == 1,
                 LastUpdatedDate = DateTime.Now.AddHours(i - count),
                 NoteId = i,
-                Title = $"Note {i} Title",
-                UserId = (int)(i / 4)  + 1
+                Title = $"Note {i} Title"
             });
         }
         return notes;

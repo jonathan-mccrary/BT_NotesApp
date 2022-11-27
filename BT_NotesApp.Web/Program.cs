@@ -1,12 +1,6 @@
-﻿using BT_NotesApp.Repository.Context;
-using BT_NotesApp.Repository.Contracts;
-using BT_NotesApp.Repository.Operations;
-using BT_NotesApp.Domain;
-using BT_NotesApp.Domain.Contracts.Service;
-using BT_NotesApp.Service;
-using BT_NotesApp.Logging;
-using NLog.Web;
+﻿using BT_NotesApp.Logging;
 using BT_NotesApp.Repository;
+using BT_NotesApp.Service;
 
 internal class Program
 {

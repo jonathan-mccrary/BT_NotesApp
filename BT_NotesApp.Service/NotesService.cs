@@ -1,12 +1,11 @@
-﻿using System;
-using BT_NotesApp.Domain.Contracts.DTOs;
+﻿using BT_NotesApp.Domain.Contracts.DTOs;
+using BT_NotesApp.Domain.Contracts.Repos;
 using BT_NotesApp.Domain.Contracts.Service;
 using BT_NotesApp.Domain.Mappers;
-using BT_NotesApp.Repository.Contracts;
 
 namespace BT_NotesApp.Service
 {
-	public class NotesService : INotesService
+    public class NotesService : INotesService
 	{
         private readonly INotesRepo _notesRepo;
 
@@ -27,27 +26,9 @@ namespace BT_NotesApp.Service
             return notes.ToDTOs();
         }
 
-        public async Task<List<INoteDTO>> GetAllNotesForUserAsync(long userId)
-        {
-            var notes = await _notesRepo.GetAllNotesForUserAsync(userId);
-            return notes.ToDTOs();
-        }
-
-        public async Task<List<INoteDTO>> GetAllActiveNotesForUserAsync(long userId)
-        {
-            var notes = await _notesRepo.GetAllActiveNotesForUserAsync(userId);
-            return notes.ToDTOs();
-        }
-
         public async Task<List<INoteDTO>> SearchNotesAsync(string keyword)
         {
             var notes = await _notesRepo.SearchNotesAsync(keyword);
-            return notes.ToDTOs();
-        }
-
-        public async Task<List<INoteDTO>> SearchNotesForUserAsync(string keyword, long userId)
-        {
-            var notes = await _notesRepo.SearchNotesForUserAsync(keyword, userId);
             return notes.ToDTOs();
         }
 
@@ -78,4 +59,3 @@ namespace BT_NotesApp.Service
         }
     }
 }
-

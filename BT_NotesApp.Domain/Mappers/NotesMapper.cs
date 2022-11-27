@@ -1,7 +1,7 @@
 ﻿using System;
-using BT_NotesApp.Repository.Entities;
 using BT_NotesApp.Domain.Contracts.DTOs;
 using BT_NotesApp.Domain.Models;
+using BT_NotesApp.Domain.Entities;
 
 namespace BT_NotesApp.Domain.Mappers
 {
@@ -17,8 +17,7 @@ namespace BT_NotesApp.Domain.Mappers
 				IsActive = note.IsActive,
 				LastUpdatedDate = note.LastUpdatedDate,
 				NoteId = note.NoteId,
-				Title = note.Title,
-				UserId = note.UserId
+				Title = note.Title
 			};
 		}
 
@@ -42,8 +41,7 @@ namespace BT_NotesApp.Domain.Mappers
                 IsActive = note.IsActive,
                 LastUpdatedDate = note.LastUpdatedDate,
                 NoteId = note.NoteId,
-                Title = note.Title,
-                UserId = note.UserId
+                Title = note.Title
             };
 		}
 

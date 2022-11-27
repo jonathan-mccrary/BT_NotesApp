@@ -3,7 +3,6 @@ using System;
 using BT_NotesApp.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -16,52 +15,47 @@ namespace BTNotesApp.Repository.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("BT_NotesApp.DataAccess.Entities.Note", b =>
+            modelBuilder.Entity("BT_NotesApp.Repository.Entities.Note", b =>
                 {
                     b.Property<long>("NoteId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("INTEGER")
                         .HasColumnOrder(1);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("NoteId"));
 
                     b.Property<string>("Contents")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(2000)
+                        .HasColumnType("TEXT")
                         .HasColumnOrder(4);
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("TEXT")
                         .HasColumnOrder(6);
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)")
+                        .HasColumnType("TEXT")
                         .HasColumnOrder(3);
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit")
+                        .HasColumnType("INTEGER")
                         .HasColumnOrder(5);
 
                     b.Property<DateTime>("LastUpdatedDate")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("TEXT")
                         .HasColumnOrder(7);
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
+                        .HasColumnType("TEXT")
                         .HasColumnOrder(2);
 
                     b.Property<long>("UserId")
-                        .HasColumnType("bigint")
+                        .HasColumnType("INTEGER")
                         .HasColumnOrder(8);
 
                     b.HasKey("NoteId");
@@ -71,25 +65,23 @@ namespace BTNotesApp.Repository.Migrations
                     b.ToTable("Note");
                 });
 
-            modelBuilder.Entity("BT_NotesApp.DataAccess.Entities.User", b =>
+            modelBuilder.Entity("BT_NotesApp.Repository.Entities.User", b =>
                 {
                     b.Property<long>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("INTEGER")
                         .HasColumnOrder(1);
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("UserId"));
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
+                        .HasColumnType("TEXT")
                         .HasColumnOrder(3);
 
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
+                        .HasColumnType("TEXT")
                         .HasColumnOrder(2);
 
                     b.HasKey("UserId");
@@ -97,16 +89,16 @@ namespace BTNotesApp.Repository.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("BT_NotesApp.DataAccess.Entities.Note", b =>
+            modelBuilder.Entity("BT_NotesApp.Repository.Entities.Note", b =>
                 {
-                    b.HasOne("BT_NotesApp.DataAccess.Entities.User", null)
+                    b.HasOne("BT_NotesApp.Repository.Entities.User", null)
                         .WithMany("Notes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BT_NotesApp.DataAccess.Entities.User", b =>
+            modelBuilder.Entity("BT_NotesApp.Repository.Entities.User", b =>
                 {
                     b.Navigation("Notes");
                 });
