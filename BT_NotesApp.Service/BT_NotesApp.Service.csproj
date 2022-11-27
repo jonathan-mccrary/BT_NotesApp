@@ -7,15 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Contracts\" />
-    <None Remove="Mappers\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-    <Folder Include="Mappers\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\BT_NotesApp.Domain\BT_NotesApp.Domain.csproj" />
     <ProjectReference Include="..\BT_NotesApp.Repository\BT_NotesApp.Repository.csproj" />
-    <ProjectReference Include="..\BT_NotesApp.Logging\BT_NotesApp.Logging.csproj" />
   </ItemGroup>
 </Project>

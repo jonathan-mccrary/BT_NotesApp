@@ -1,4 +1,4 @@
-﻿using BT_NotesApp.Domain.Contracts.Logic;
+﻿using BT_NotesApp.Domain.Contracts.Service;
 using BT_NotesApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +9,10 @@ namespace BT_NotesApp.API.Controllers
     [Route("api/[controller]")]
     public class NotesController : Controller
     {
-        private INotesLogic _notesLogic;
+        private INotesService _notesLogic;
         private ILogger<NotesController> _logger;
         public NotesController(
-            INotesLogic notesLogic,
+            INotesService notesLogic,
             ILogger<NotesController> logger)
         {
             _notesLogic = notesLogic;

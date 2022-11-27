@@ -1,16 +1,17 @@
-﻿
+﻿using System;
 using BT_NotesApp.Domain.Contracts.DTOs;
-using BT_NotesApp.Domain.Contracts.Logic;
+using BT_NotesApp.Domain.Contracts.Service;
 using BT_NotesApp.Domain.Mappers;
 using BT_NotesApp.Repository.Contracts;
 
-namespace BT_NotesApp.Domain.Logic
+namespace BT_NotesApp.Service
 {
-    public class NotesLogic : INotesLogic
+	public class NotesService : INotesService
 	{
         private readonly INotesRepo _notesRepo;
-        public NotesLogic(INotesRepo notesRepo)
-		{
+
+        public NotesService(INotesRepo notesRepo)
+        {
             _notesRepo = notesRepo;
         }
 
@@ -77,3 +78,4 @@ namespace BT_NotesApp.Domain.Logic
         }
     }
 }
+

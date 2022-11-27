@@ -39,5 +39,8 @@
     <ProjectReference Include="..\BT_NotesApp.Repository\BT_NotesApp.Repository.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\BT_NotesApp.Service\BT_NotesApp.Service.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

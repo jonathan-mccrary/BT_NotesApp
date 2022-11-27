@@ -1,9 +1,9 @@
 ﻿using System;
 using BT_NotesApp.Domain.Contracts.DTOs;
 
-namespace BT_NotesApp.Domain.Contracts.Logic
+namespace BT_NotesApp.Domain.Contracts.Service
 {
-	public interface INotesLogic
+	public interface INotesService
 	{
         Task<List<INoteDTO>> GetAllNotesAsync();
         Task<List<INoteDTO>> GetAllActiveNotesAsync();

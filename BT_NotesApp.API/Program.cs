@@ -1,6 +1,7 @@
 ﻿using BT_NotesApp.Domain;
 using BT_NotesApp.Logging;
 using BT_NotesApp.Repository;
+using BT_NotesApp.Service;
 using Microsoft.EntityFrameworkCore;
 
 internal class Program

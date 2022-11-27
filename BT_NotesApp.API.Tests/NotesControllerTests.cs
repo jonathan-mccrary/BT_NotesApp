@@ -1,7 +1,7 @@
 ﻿using Azure;
 using BT_NotesApp.API.Controllers;
 using BT_NotesApp.Domain.Contracts.DTOs;
-using BT_NotesApp.Domain.Contracts.Logic;
+using BT_NotesApp.Domain.Contracts.Service;
 using BT_NotesApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,13 +11,13 @@ namespace BT_NotesApp.API.Tests;
 
 public class NotesControllerTests : IDisposable
 {
-    private readonly Mock<INotesLogic> _mockNotesLogic;
+    private readonly Mock<INotesService> _mockNotesLogic;
     private readonly Mock<ILogger<NotesController>> _mockLogger;
     private readonly NotesController _notesController;
 
     public NotesControllerTests()
     {
-        _mockNotesLogic = new Mock<INotesLogic>();
+        _mockNotesLogic = new Mock<INotesService>();
         _mockLogger = new Mock<ILogger<NotesController>>();
         _notesController = new NotesController(_mockNotesLogic.Object, _mockLogger.Object);
     }
