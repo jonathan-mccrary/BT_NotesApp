@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.Logging", "BT_N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.Repository", "BT_NotesApp.Repository\BT_NotesApp.Repository.csproj", "{D3575799-7332-42DF-99FE-C93AEE126C22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.API.Tests", "BT_NotesApp.API.Tests\BT_NotesApp.API.Tests.csproj", "{7F0AC9A5-6D9D-4E11-BB06-10A20EDCFB26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{D3575799-7332-42DF-99FE-C93AEE126C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3575799-7332-42DF-99FE-C93AEE126C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3575799-7332-42DF-99FE-C93AEE126C22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F0AC9A5-6D9D-4E11-BB06-10A20EDCFB26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F0AC9A5-6D9D-4E11-BB06-10A20EDCFB26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F0AC9A5-6D9D-4E11-BB06-10A20EDCFB26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F0AC9A5-6D9D-4E11-BB06-10A20EDCFB26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

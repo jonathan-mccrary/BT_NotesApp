@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BT_NotesApp.Repository.Context
+namespace BT_NotesApp.Repository
 {
 	public static class ServiceExtensions
 	{

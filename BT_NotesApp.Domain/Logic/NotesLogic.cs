@@ -8,72 +8,11 @@ namespace BT_NotesApp.Domain.Logic
 {
     public class NotesLogic : INotesLogic
 	{
-        private INotesRepo _notesRepo;
+        private readonly INotesRepo _notesRepo;
         public NotesLogic(INotesRepo notesRepo)
 		{
             _notesRepo = notesRepo;
         }
-
-        #region Synch Methods
-
-        //public long AddNewNote(INoteDTO note)
-        //{
-        //    return _notesRepo.AddNote(note.ToEntity());
-        //}
-
-        //public void DeactivateNote(long noteId)
-        //{
-        //    _notesRepo.DeactivateNote(noteId);
-        //}
-
-        //public void DeleteNote(long noteId)
-        //{
-        //    _notesRepo.DeleteNote(noteId);
-        //}
-
-        //public void EditNote(INoteDTO note)
-        //{
-        //    _notesRepo.EditNote(note.ToEntity());
-        //}
-
-        //public List<INoteDTO> GetAllNotes()
-        //{
-        //    return _notesRepo.GetAllNotes().ToDTOs();
-        //}
-
-        //public List<INoteDTO> GetAllActiveNotes()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public List<INoteDTO> GetAllNotesForUser(long userId)
-        //{
-        //    return _notesRepo.GetAllNotesForUser(userId).ToDTOs();
-        //}
-
-        //public List<INoteDTO> GetAllActiveNotesForUser(long userId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public INoteDTO? GetNote(long noteId)
-        //{
-        //    return _notesRepo.GetNote(noteId)?.ToDTO();
-        //}
-
-        //public List<INoteDTO> SearchNotes(string keyword)
-        //{
-        //    return _notesRepo.SearchNotes(keyword).ToDTOs();
-        //}
-
-        //public List<INoteDTO> SearchNotesForUser(string keyword, long userId)
-        //{
-        //    return _notesRepo.SearchNotesForUser(keyword, userId).ToDTOs();
-        //}
-
-        #endregion Synchronous Methods
-
-        #region Async Methods
 
         public async Task<List<INoteDTO>> GetAllNotesAsync()
         {
@@ -136,7 +75,5 @@ namespace BT_NotesApp.Domain.Logic
         {
             await _notesRepo.DeactivateNoteAsync(noteId);
         }
-
-        #endregion Async Methods
     }
 }

@@ -1,27 +1,30 @@
 ﻿using BT_NotesApp.Domain;
 using BT_NotesApp.Logging;
 using BT_NotesApp.Repository;
-using BT_NotesApp.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 
 internal class Program
 {
-    private static IConfiguration _configuration;
     private static void Main(string[] args)
+    {
+        WebApplication app = ConfigureBuilder(args);
+        ConfigureApp(app);
+    }
+
+    private static WebApplication ConfigureBuilder(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-
         builder.Services.AddControllers();
 
-        _configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables()
-                .Build();
-        
-        builder.Services.Configure<Program>(_configuration);
-        builder.Services.AddSingleton(provider => _configuration);
+        var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .AddEnvironmentVariables()
+            .Build();
+
+        builder.Services.Configure<Program>(configuration);
+        builder.Services.AddSingleton(provider => configuration);
 
         builder.Services.ConfigureDependencies();
         builder.Services.ConfigureLogging();
@@ -33,7 +36,11 @@ internal class Program
         builder.Services.AddSwaggerGen();
 
         var app = builder.Build();
+        return app;
+    }
 
+    private static void ConfigureApp(WebApplication app)
+    {
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
