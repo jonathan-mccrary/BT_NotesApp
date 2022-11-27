@@ -30,7 +30,7 @@
     <None Remove="NLog.Web.AspNetCore" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BT_NotesApp.Utility\BT_NotesApp.Logging.csproj">
+    <ProjectReference Include="..\BT_NotesApp.Logging\BT_NotesApp.Logging.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
     <ProjectReference Include="..\BT_NotesApp.Domain\BT_NotesApp.Domain.csproj">

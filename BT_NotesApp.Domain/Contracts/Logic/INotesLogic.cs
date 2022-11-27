@@ -5,17 +5,17 @@ namespace BT_NotesApp.Domain.Contracts.Logic
 {
 	public interface INotesLogic
 	{
-        List<INoteDTO> GetAllNotes();
-        List<INoteDTO> GetAllActiveNotes();
-        List<INoteDTO> GetAllNotesForUser(long userId);
-        List<INoteDTO> GetAllActiveNotesForUser(long userId);
-        List<INoteDTO> SearchNotes(string keyword);
-        List<INoteDTO> SearchNotesForUser(string keyword, long userId);
-        INoteDTO? GetNote(long noteId);
-        long AddNewNote(INoteDTO note);
-        void EditNote(INoteDTO note);
-        void DeleteNote(long noteId);
-        void DeactivateNote(long noteId);
+        //List<INoteDTO> GetAllNotes();
+        //List<INoteDTO> GetAllActiveNotes();
+        //List<INoteDTO> GetAllNotesForUser(long userId);
+        //List<INoteDTO> GetAllActiveNotesForUser(long userId);
+        //List<INoteDTO> SearchNotes(string keyword);
+        //List<INoteDTO> SearchNotesForUser(string keyword, long userId);
+        //INoteDTO? GetNote(long noteId);
+        //long AddNewNote(INoteDTO note);
+        //void EditNote(INoteDTO note);
+        //void DeleteNote(long noteId);
+        //void DeactivateNote(long noteId);
 
         Task<List<INoteDTO>> GetAllNotesAsync();
         Task<List<INoteDTO>> GetAllActiveNotesAsync();

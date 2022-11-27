@@ -5,17 +5,17 @@ namespace BT_NotesApp.Repository.Contracts
 {
     public interface INotesRepo
     {
-        List<Note> GetAllNotes();
-        List<Note> GetAllActiveNotes();
-        List<Note> GetAllNotesForUser(long userId);
-        List<Note> GetAllActiveNotesForUser(long userId);
-        List<Note> SearchNotes(string keyword);
-        List<Note> SearchNotesForUser(string keyword, long userId);
-        Note? GetNote(long noteId);
-        long AddNote(Note note);
-        void EditNote(Note note);
-        void DeleteNote(long noteId);
-        void DeactivateNote(long noteId);
+        //List<Note> GetAllNotes();
+        //List<Note> GetAllActiveNotes();
+        //List<Note> GetAllNotesForUser(long userId);
+        //List<Note> GetAllActiveNotesForUser(long userId);
+        //List<Note> SearchNotes(string keyword);
+        //List<Note> SearchNotesForUser(string keyword, long userId);
+        //Note? GetNote(long noteId);
+        //long AddNote(Note note);
+        //void EditNote(Note note);
+        //void DeleteNote(long noteId);
+        //void DeactivateNote(long noteId);
 
         Task<List<Note>> GetAllNotesAsync();
         Task<List<Note>> GetAllActiveNotesAsync();

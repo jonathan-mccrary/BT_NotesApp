@@ -6,6 +6,7 @@ using BT_NotesApp.Domain.Contracts.Logic;
 using BT_NotesApp.Domain.Logic;
 using BT_NotesApp.Logging;
 using NLog.Web;
+using BT_NotesApp.Repository;
 
 internal class Program
 {
@@ -27,11 +28,7 @@ internal class Program
 
         builder.Services.ConfigureDependencies();
         builder.Services.ConfigureLogging();
-
-        //var connection = _configuration.GetConnectionString("BoomTownDb");
-        //builder.Services.AddDbContext<NotesAppContext>(options =>
-        //    options.UseSqlServer(connection)
-        //);
+        builder.Services.ConfigureDbContext();
 
         var app = builder.Build();
 

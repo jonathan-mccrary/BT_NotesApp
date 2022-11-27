@@ -10,10 +10,10 @@ namespace BT_NotesApp.API.Controllers
     public class NotesController : Controller
     {
         private INotesLogic _notesLogic;
-        private ILogger _logger;
+        private ILogger<NotesController> _logger;
         public NotesController(
             INotesLogic notesLogic,
-            ILogger logger)
+            ILogger<NotesController> logger)
         {
             _notesLogic = notesLogic;
             _logger = logger;
@@ -21,20 +21,20 @@ namespace BT_NotesApp.API.Controllers
 
         //List<Note> GetAllNotes();
         // GET: api/Notes
-        [HttpGet]
-        public IActionResult GetAllNotes()
-        {
-            try
-            {
-                var allNotes = _notesLogic.GetAllNotes();
-                return Ok(allNotes);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error at GetAllNotes: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
-        }
+        //[HttpGet]
+        //public IActionResult GetAllNotes()
+        //{
+        //    try
+        //    {
+        //        var allNotes = _notesLogic.GetAllNotes();
+        //        return Ok(allNotes);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Error at GetAllNotes: {ex.Message}");
+        //        return StatusCode(500, "Internal server error");
+        //    }
+        //}
 
         // GET: api/Notes
         [HttpGet]
@@ -53,20 +53,20 @@ namespace BT_NotesApp.API.Controllers
         }
 
         // GET api/Notes/Active
-        [HttpGet("Active")]
-        public IActionResult GetAllActiveNotes()
-        {
-            try
-            {
-                var allNotes = _notesLogic.GetAllNotes();
-                return Ok(allNotes);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error at GetAllNotes: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
-        }
+        //[HttpGet("Active")]
+        //public IActionResult GetAllActiveNotes()
+        //{
+        //    try
+        //    {
+        //        var allNotes = _notesLogic.GetAllNotes();
+        //        return Ok(allNotes);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Error at GetAllNotes: {ex.Message}");
+        //        return StatusCode(500, "Internal server error");
+        //    }
+        //}
 
         // GET api/Notes/Active
         [HttpGet("Active")]
@@ -86,20 +86,20 @@ namespace BT_NotesApp.API.Controllers
 
         //List<Note> GetAllNotesForUser(long userId);
         // GET api/Notes/User/5
-        [HttpGet("User/{userId}")]
-        public IActionResult GetAllNotesForUser(long userId)
-        {
-            try
-            {
-                var notes = _notesLogic.GetAllNotesForUser(userId);
-                return Ok(notes);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error at GetAllNotesForUser: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
-        }
+        //[HttpGet("User/{userId}")]
+        //public IActionResult GetAllNotesForUser(long userId)
+        //{
+        //    try
+        //    {
+        //        var notes = _notesLogic.GetAllNotesForUser(userId);
+        //        return Ok(notes);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Error at GetAllNotesForUser: {ex.Message}");
+        //        return StatusCode(500, "Internal server error");
+        //    }
+        //}
 
         // GET api/Notes/User/5
         [HttpGet("User/{userId}")]
@@ -122,20 +122,20 @@ namespace BT_NotesApp.API.Controllers
         //List<Note> GetAllActiveNotesForUser(long userId);
 
         // GET api/Notes/Active/User/5
-        [HttpGet("Active/User/{userId}")]
-        public IActionResult GetAllActiveNotesForUser(long userId)
-        {
-            try
-            {
-                var notes = _notesLogic.GetAllActiveNotesForUser(userId);
-                return Ok(notes);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error at GetAllActiveNotesForUser: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
-        }
+        //[HttpGet("Active/User/{userId}")]
+        //public IActionResult GetAllActiveNotesForUser(long userId)
+        //{
+        //    try
+        //    {
+        //        var notes = _notesLogic.GetAllActiveNotesForUser(userId);
+        //        return Ok(notes);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Error at GetAllActiveNotesForUser: {ex.Message}");
+        //        return StatusCode(500, "Internal server error");
+        //    }
+        //}
 
         // GET api/Notes/Active/User/5
         [HttpGet("Active/User/{userId}")]
@@ -156,20 +156,20 @@ namespace BT_NotesApp.API.Controllers
         //List<Note> SearchNotesForUser(string keyword, long userId);
 
         // GET api/Notes/5
-        [HttpGet("{noteId}")]
-        public IActionResult Get(long noteId)
-        {
-            try
-            {
-                var note = _notesLogic.GetNote(noteId);
-                return Ok(note);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error at Get: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
-        }
+        //[HttpGet("{noteId}")]
+        //public IActionResult Get(long noteId)
+        //{
+        //    try
+        //    {
+        //        var note = _notesLogic.GetNote(noteId);
+        //        return Ok(note);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Error at Get: {ex.Message}");
+        //        return StatusCode(500, "Internal server error");
+        //    }
+        //}
 
         // GET api/Notes/5
         [HttpGet("{noteId}")]
@@ -190,20 +190,20 @@ namespace BT_NotesApp.API.Controllers
 
         //long AddNote(Note note);
         // POST api/Notes
-        [HttpPost]
-        public IActionResult AddNote([FromBody]INoteDTO value)
-        {
-            try
-            {
-                var noteId = _notesLogic.AddNewNote(value);
-                return Ok(noteId);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error at AddNote: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
-        }
+        //[HttpPost]
+        //public IActionResult AddNote([FromBody]INoteDTO value)
+        //{
+        //    try
+        //    {
+        //        var noteId = _notesLogic.AddNewNote(value);
+        //        return Ok(noteId);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Error at AddNote: {ex.Message}");
+        //        return StatusCode(500, "Internal server error");
+        //    }
+        //}
 
         //long AddNote(Note note);
         // POST api/Notes
@@ -224,20 +224,20 @@ namespace BT_NotesApp.API.Controllers
 
         //void EditNote(Note note);
         // PUT api/Notes
-        [HttpPut]
-        public IActionResult EditNote([FromBody]INoteDTO value)
-        {
-            try
-            {
-                _notesLogic.EditNote(value);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error at EditNote: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
-        }
+        //[HttpPut]
+        //public IActionResult EditNote([FromBody]INoteDTO value)
+        //{
+        //    try
+        //    {
+        //        _notesLogic.EditNote(value);
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Error at EditNote: {ex.Message}");
+        //        return StatusCode(500, "Internal server error");
+        //    }
+        //}
 
         //void EditNote(Note note);
         // PUT api/Notes
@@ -258,20 +258,20 @@ namespace BT_NotesApp.API.Controllers
 
         //void DeleteNote(long noteId);
         // DELETE api/Notes/5
-        [HttpDelete("{noteId}")]
-        public IActionResult Delete(long noteId)
-        {
-            try
-            {
-                _notesLogic.DeleteNote(noteId);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error at Delete: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
-        }
+        //[HttpDelete("{noteId}")]
+        //public IActionResult Delete(long noteId)
+        //{
+        //    try
+        //    {
+        //        _notesLogic.DeleteNote(noteId);
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Error at Delete: {ex.Message}");
+        //        return StatusCode(500, "Internal server error");
+        //    }
+        //}
 
         //void DeleteNote(long noteId);
         // DELETE api/Notes/5
@@ -292,20 +292,20 @@ namespace BT_NotesApp.API.Controllers
 
         //void DeleteNote(long noteId);
         // DELETE api/Notes/Deactivate/5
-        [HttpDelete("Deactivate/{noteId}")]
-        public IActionResult Deactivate(long noteId)
-        {
-            try
-            {
-                _notesLogic.DeactivateNote(noteId);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error at noteId: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
-        }
+        //[HttpDelete("Deactivate/{noteId}")]
+        //public IActionResult Deactivate(long noteId)
+        //{
+        //    try
+        //    {
+        //        _notesLogic.DeactivateNote(noteId);
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Error at noteId: {ex.Message}");
+        //        return StatusCode(500, "Internal server error");
+        //    }
+        //}
 
         //void DeleteNote(long noteId);
         // DELETE api/Notes/Deactivate5

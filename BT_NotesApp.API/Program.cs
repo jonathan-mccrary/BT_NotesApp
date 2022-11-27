@@ -1,5 +1,8 @@
 ﻿using BT_NotesApp.Domain;
 using BT_NotesApp.Logging;
+using BT_NotesApp.Repository;
+using BT_NotesApp.Repository.Context;
+using Microsoft.EntityFrameworkCore;
 
 internal class Program
 {
@@ -22,6 +25,8 @@ internal class Program
 
         builder.Services.ConfigureDependencies();
         builder.Services.ConfigureLogging();
+        builder.Services.ConfigureDbContext();
+
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();

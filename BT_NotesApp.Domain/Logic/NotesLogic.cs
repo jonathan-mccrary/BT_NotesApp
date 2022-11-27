@@ -16,60 +16,60 @@ namespace BT_NotesApp.Domain.Logic
 
         #region Synch Methods
 
-        public long AddNewNote(INoteDTO note)
-        {
-            return _notesRepo.AddNote(note.ToEntity());
-        }
+        //public long AddNewNote(INoteDTO note)
+        //{
+        //    return _notesRepo.AddNote(note.ToEntity());
+        //}
 
-        public void DeactivateNote(long noteId)
-        {
-            _notesRepo.DeactivateNote(noteId);
-        }
+        //public void DeactivateNote(long noteId)
+        //{
+        //    _notesRepo.DeactivateNote(noteId);
+        //}
 
-        public void DeleteNote(long noteId)
-        {
-            _notesRepo.DeleteNote(noteId);
-        }
+        //public void DeleteNote(long noteId)
+        //{
+        //    _notesRepo.DeleteNote(noteId);
+        //}
 
-        public void EditNote(INoteDTO note)
-        {
-            _notesRepo.EditNote(note.ToEntity());
-        }
+        //public void EditNote(INoteDTO note)
+        //{
+        //    _notesRepo.EditNote(note.ToEntity());
+        //}
 
-        public List<INoteDTO> GetAllNotes()
-        {
-            return _notesRepo.GetAllNotes().ToDTOs();
-        }
+        //public List<INoteDTO> GetAllNotes()
+        //{
+        //    return _notesRepo.GetAllNotes().ToDTOs();
+        //}
 
-        public List<INoteDTO> GetAllActiveNotes()
-        {
-            throw new NotImplementedException();
-        }
+        //public List<INoteDTO> GetAllActiveNotes()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public List<INoteDTO> GetAllNotesForUser(long userId)
-        {
-            return _notesRepo.GetAllNotesForUser(userId).ToDTOs();
-        }
+        //public List<INoteDTO> GetAllNotesForUser(long userId)
+        //{
+        //    return _notesRepo.GetAllNotesForUser(userId).ToDTOs();
+        //}
 
-        public List<INoteDTO> GetAllActiveNotesForUser(long userId)
-        {
-            throw new NotImplementedException();
-        }
+        //public List<INoteDTO> GetAllActiveNotesForUser(long userId)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public INoteDTO? GetNote(long noteId)
-        {
-            return _notesRepo.GetNote(noteId)?.ToDTO();
-        }
+        //public INoteDTO? GetNote(long noteId)
+        //{
+        //    return _notesRepo.GetNote(noteId)?.ToDTO();
+        //}
 
-        public List<INoteDTO> SearchNotes(string keyword)
-        {
-            return _notesRepo.SearchNotes(keyword).ToDTOs();
-        }
+        //public List<INoteDTO> SearchNotes(string keyword)
+        //{
+        //    return _notesRepo.SearchNotes(keyword).ToDTOs();
+        //}
 
-        public List<INoteDTO> SearchNotesForUser(string keyword, long userId)
-        {
-            return _notesRepo.SearchNotesForUser(keyword, userId).ToDTOs();
-        }
+        //public List<INoteDTO> SearchNotesForUser(string keyword, long userId)
+        //{
+        //    return _notesRepo.SearchNotesForUser(keyword, userId).ToDTOs();
+        //}
 
         #endregion Synchronous Methods
 

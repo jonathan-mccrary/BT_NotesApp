@@ -14,93 +14,93 @@ namespace BT_NotesApp.Repository.Operations
             _context = context;
         }
 
-        public List<Note> GetAllNotes()
-        {
-            return _context.Notes.ToList();
-        }
+        //public List<Note> GetAllNotes()
+        //{
+        //    return _context.Notes.ToList();
+        //}
 
-        public List<Note> GetAllActiveNotes()
-        {
-            return _context.Notes.Where(p => p.IsActive == true).ToList();
-        }
+        //public List<Note> GetAllActiveNotes()
+        //{
+        //    return _context.Notes.Where(p => p.IsActive == true).ToList();
+        //}
 
-        public List<Note> GetAllNotesForUser(long userId)
-        {
-            return _context.Notes.Where(p => p.UserId == userId).ToList();
-        }
+        //public List<Note> GetAllNotesForUser(long userId)
+        //{
+        //    return _context.Notes.Where(p => p.UserId == userId).ToList();
+        //}
 
-        public List<Note> GetAllActiveNotesForUser(long userId)
-        {
-            return _context.Notes.Where(p =>
-                p.UserId == userId
-                && p.IsActive == true).ToList();
-        }
+        //public List<Note> GetAllActiveNotesForUser(long userId)
+        //{
+        //    return _context.Notes.Where(p =>
+        //        p.UserId == userId
+        //        && p.IsActive == true).ToList();
+        //}
 
-        public Note? GetNote(long noteId)
-        {
-            return _context.Notes.FirstOrDefault(p => p.NoteId == noteId);
-        }
+        //public Note? GetNote(long noteId)
+        //{
+        //    return _context.Notes.FirstOrDefault(p => p.NoteId == noteId);
+        //}
 
-        public List<Note> SearchNotes(string keyword)
-        {
-            return _context.Notes.Where(p =>
-                p.Contents.Contains(keyword, StringComparison.CurrentCultureIgnoreCase)
-            ).ToList();
-        }
+        //public List<Note> SearchNotes(string keyword)
+        //{
+        //    return _context.Notes.Where(p =>
+        //        p.Contents.Contains(keyword, StringComparison.CurrentCultureIgnoreCase)
+        //    ).ToList();
+        //}
 
-        public List<Note> SearchNotesForUser(string keyword, long userId)
-        {
-            return _context.Notes.Where(p =>
-                p.Contents.Contains(keyword, StringComparison.CurrentCultureIgnoreCase)
-                && p.UserId == userId
-            ).ToList();
-        }
+        //public List<Note> SearchNotesForUser(string keyword, long userId)
+        //{
+        //    return _context.Notes.Where(p =>
+        //        p.Contents.Contains(keyword, StringComparison.CurrentCultureIgnoreCase)
+        //        && p.UserId == userId
+        //    ).ToList();
+        //}
 
-        public long AddNote(Note note)
-        {
-            note.CreatedDate = DateTime.Now;
-            note.LastUpdatedDate = DateTime.Now;
-            note.IsActive = true;
-            _context.Notes.Add(note);
-            _context.SaveChanges();
-            return note.NoteId;
-        }
+        //public long AddNote(Note note)
+        //{
+        //    note.CreatedDate = DateTime.Now;
+        //    note.LastUpdatedDate = DateTime.Now;
+        //    note.IsActive = true;
+        //    _context.Notes.Add(note);
+        //    _context.SaveChanges();
+        //    return note.NoteId;
+        //}
 
-        public void DeactivateNote(long noteId)
-        {
-            Note? current = _context.Notes.FirstOrDefault(p => p.NoteId == noteId);
-            if (current != null)
-            {
-                current.LastUpdatedDate = DateTime.Now;
-                current.IsActive = false;
-                _context.SaveChanges();
-            }
-        }
+        //public void DeactivateNote(long noteId)
+        //{
+        //    Note? current = _context.Notes.FirstOrDefault(p => p.NoteId == noteId);
+        //    if (current != null)
+        //    {
+        //        current.LastUpdatedDate = DateTime.Now;
+        //        current.IsActive = false;
+        //        _context.SaveChanges();
+        //    }
+        //}
 
-        public void DeleteNote(long noteId)
-        {
-            Note? current = _context.Notes.FirstOrDefault(p => p.NoteId == noteId);
-            if (current != null)
-            {
-                _context.Remove(current);
-                _context.SaveChanges();
-            }
-        }
+        //public void DeleteNote(long noteId)
+        //{
+        //    Note? current = _context.Notes.FirstOrDefault(p => p.NoteId == noteId);
+        //    if (current != null)
+        //    {
+        //        _context.Remove(current);
+        //        _context.SaveChanges();
+        //    }
+        //}
 
-        public void EditNote(Note note)
-        {
-            Note? current = _context.Notes.FirstOrDefault(p => p.NoteId == note.NoteId);
+        //public void EditNote(Note note)
+        //{
+        //    Note? current = _context.Notes.FirstOrDefault(p => p.NoteId == note.NoteId);
 
-            if (current != null)
-            {
-                current.Contents = note.Contents;
-                current.Description = note.Description;
-                current.IsActive = note.IsActive;
-                current.Title = note.Title;
-                current.LastUpdatedDate = DateTime.Now;
-                _context.SaveChanges();
-            }
-        }
+        //    if (current != null)
+        //    {
+        //        current.Contents = note.Contents;
+        //        current.Description = note.Description;
+        //        current.IsActive = note.IsActive;
+        //        current.Title = note.Title;
+        //        current.LastUpdatedDate = DateTime.Now;
+        //        _context.SaveChanges();
+        //    }
+        //}
 
         public async Task<List<Note>> GetAllNotesAsync()
         {
