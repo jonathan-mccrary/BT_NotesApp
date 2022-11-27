@@ -9,6 +9,5 @@
         bool IsActive { get; set; }
         DateTime CreatedDate { get; set; }
         DateTime LastUpdatedDate { get; set; }
-        long UserId { get; set; }
     }
 }

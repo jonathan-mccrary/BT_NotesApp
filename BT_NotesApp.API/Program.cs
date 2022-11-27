@@ -1,6 +1,7 @@
 ﻿using BT_NotesApp.Domain;
 using BT_NotesApp.Logging;
 using BT_NotesApp.Repository;
+using BT_NotesApp.Repository.Context;
 using BT_NotesApp.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,7 @@ internal class Program
     private static void Main(string[] args)
     {
         WebApplication app = ConfigureBuilder(args);
+
         ConfigureApp(app);
     }
 
@@ -31,7 +33,6 @@ internal class Program
         builder.Services.ConfigureLogging();
         builder.Services.ConfigureDbContext();
 
-
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
@@ -42,6 +43,12 @@ internal class Program
 
     private static void ConfigureApp(WebApplication app)
     {
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<NotesAppContext>();
+            var created = db.Database.EnsureCreated();
+        }
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {

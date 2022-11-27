@@ -30,9 +30,6 @@ namespace BT_NotesApp.Domain.Models
 
         [JsonPropertyName("lastUpdatedDate")]
         public DateTime LastUpdatedDate { get; set; }
-
-        [JsonPropertyName("userId")]
-        public long UserId { get; set; }
     }
 }
 

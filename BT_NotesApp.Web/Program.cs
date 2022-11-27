@@ -1,5 +1,6 @@
 ﻿using BT_NotesApp.Logging;
 using BT_NotesApp.Repository;
+using BT_NotesApp.Repository.Context;
 using BT_NotesApp.Service;
 
 internal class Program
@@ -25,6 +26,11 @@ internal class Program
         builder.Services.ConfigureDbContext();
 
         var app = builder.Build();
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<NotesAppContext>();
+            db.Database.EnsureCreated();
+        }
 
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())

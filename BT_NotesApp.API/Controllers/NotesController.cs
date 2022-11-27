@@ -1,4 +1,5 @@
-﻿using BT_NotesApp.Domain.Contracts.Service;
+﻿using System.Net;
+using BT_NotesApp.Domain.Contracts.Service;
 using BT_NotesApp.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -107,8 +108,15 @@ namespace BT_NotesApp.API.Controllers
         {
             try
             {
-                var noteId = await _notesLogic.AddNewNoteAsync(value);
-                return Ok(noteId);
+                if (ModelState.IsValid)
+                {
+                    var noteId = await _notesLogic.AddNewNoteAsync(value);
+                    return Ok(noteId);
+                }
+                else
+                {
+                    return BadRequest(ModelState);
+                }                
             }
             catch (Exception ex)
             {
@@ -127,8 +135,15 @@ namespace BT_NotesApp.API.Controllers
         {
             try
             {
-                await _notesLogic.EditNoteAsync(value);
-                return Ok();
+                if (ModelState.IsValid)
+                {
+                    await _notesLogic.EditNoteAsync(value);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest(ModelState);
+                }
             }
             catch (Exception ex)
             {

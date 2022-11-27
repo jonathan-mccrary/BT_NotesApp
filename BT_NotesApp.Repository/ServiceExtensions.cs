@@ -4,6 +4,7 @@ using BT_NotesApp.Repository.Repos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace BT_NotesApp.Repository
 {
@@ -22,7 +23,7 @@ namespace BT_NotesApp.Repository
                 var connString_SQLServer = configuration.GetConnectionString("BoomTownDb_SQLServer");
                 var builder = new DbContextOptionsBuilder<NotesAppContext>();
                 builder.UseSqlite(connString_SQLite);
-                //builder.UseSqlServer(connString_SQLServer);
+
                 return new NotesAppContext(builder.Options);
             });
         }

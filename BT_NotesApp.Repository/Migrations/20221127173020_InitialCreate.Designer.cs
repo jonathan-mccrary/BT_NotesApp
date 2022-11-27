@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BTNotesApp.Repository.Migrations
 {
     [DbContext(typeof(NotesAppContext))]
-    [Migration("20221127164132_InitialCreate")]
+    [Migration("20221127173020_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace BTNotesApp.Repository.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
 
-            modelBuilder.Entity("BT_NotesApp.Repository.Entities.Note", b =>
+            modelBuilder.Entity("BT_NotesApp.Domain.Entities.Note", b =>
                 {
                     b.Property<long>("NoteId")
                         .ValueGeneratedOnAdd()
@@ -57,53 +57,9 @@ namespace BTNotesApp.Repository.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnOrder(2);
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(8);
-
                     b.HasKey("NoteId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Note");
-                });
-
-            modelBuilder.Entity("BT_NotesApp.Repository.Entities.User", b =>
-                {
-                    b.Property<long>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(1);
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("TEXT")
-                        .HasColumnOrder(3);
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("TEXT")
-                        .HasColumnOrder(2);
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("User");
-                });
-
-            modelBuilder.Entity("BT_NotesApp.Repository.Entities.Note", b =>
-                {
-                    b.HasOne("BT_NotesApp.Repository.Entities.User", null)
-                        .WithMany("Notes")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BT_NotesApp.Repository.Entities.User", b =>
-                {
-                    b.Navigation("Notes");
                 });
 #pragma warning restore 612, 618
         }

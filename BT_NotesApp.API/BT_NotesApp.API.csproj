@@ -29,6 +29,7 @@
     <None Remove="NLog" />
     <None Remove="NLog.Extensions.Logging" />
     <None Remove="NLog.Web.AspNetCore" />
+    <None Remove="Sqlite\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BT_NotesApp.Logging\BT_NotesApp.Logging.csproj">
@@ -43,5 +44,8 @@
     <ProjectReference Include="..\BT_NotesApp.Service\BT_NotesApp.Service.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Sqlite\" />
   </ItemGroup>
 </Project>
