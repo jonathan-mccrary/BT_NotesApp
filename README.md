@@ -11,3 +11,7 @@ Notes API
 * Set startup project to BT_NotesApp.API.
 * Run/Debug application.
 * This will open a browser view of the Swagger docs. From here the API can be tested.
+
+Notes API.Tests
+* Use VS test explorer.
+* Run tests.
