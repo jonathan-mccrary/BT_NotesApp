@@ -2,8 +2,7 @@
 using BT_NotesApp.Domain.Contracts.Service;
 using BT_NotesApp.Service;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System.Text.Json;
 
 namespace BT_NotesApp.Web.Controllers
 {
@@ -20,14 +19,8 @@ namespace BT_NotesApp.Web.Controllers
             _logger = logger;
         }
 
-        // GET: /<controller>/
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
-
         [HttpGet]
-        public List<INoteDTO> GetAllNotes()
+        public IEnumerable<INoteDTO> Get()
         {
             List<INoteDTO> noteDTOs = new List<INoteDTO>();
             var response = _notesService.GetAllNotesAsync();
@@ -35,7 +28,6 @@ namespace BT_NotesApp.Web.Controllers
             {
                 noteDTOs = response.Result;
             }
-
             return noteDTOs;
         }
         //Task<List<INoteDTO>> GetAllNotesAsync();

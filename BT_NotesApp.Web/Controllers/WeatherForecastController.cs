@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BT_NotesApp.Domain.Contracts.DTOs;
+using BT_NotesApp.Domain.Contracts.Service;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BT_NotesApp.Web.Controllers;
 
@@ -11,10 +13,12 @@ public class WeatherForecastController : ControllerBase
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
+    private readonly INotesService _notesService;
     private readonly ILogger<WeatherForecastController> _logger;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(INotesService notesService, ILogger<WeatherForecastController> logger)
     {
+        _notesService = notesService;
         _logger = logger;
     }
 

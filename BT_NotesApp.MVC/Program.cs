@@ -2,6 +2,7 @@
 using BT_NotesApp.Repository;
 using BT_NotesApp.Repository.Context;
 using BT_NotesApp.Service;
+using Microsoft.Extensions.Configuration;
 
 internal class Program
 {
@@ -11,11 +12,10 @@ internal class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
-
         var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables()
-                .Build();
+            .AddJsonFile("appsettings.json")
+            .AddEnvironmentVariables()
+            .Build();
 
         builder.Services.Configure<Program>(configuration);
         builder.Services.AddSingleton(provider => configuration);
@@ -34,20 +34,21 @@ internal class Program
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
         {
+            app.UseExceptionHandler("/Home/Error");
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();
+
         app.UseRouting();
 
+        app.UseAuthorization();
 
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller}/{action=Index}/{id?}");
-
-        app.MapFallbackToFile("index.html");
+            pattern: "{controller=Home}/{action=Index}/{id?}");
 
         app.Run();
     }

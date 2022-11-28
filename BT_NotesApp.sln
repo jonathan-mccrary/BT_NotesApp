@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.API.Tests", "BT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.Service", "BT_NotesApp.Service\BT_NotesApp.Service.csproj", "{077023C8-6A2B-4EDE-8146-C97609996002}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT_NotesApp.MVC", "BT_NotesApp.MVC\BT_NotesApp.MVC.csproj", "{32374040-4D0A-49F1-BA73-27B3659B0CAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{077023C8-6A2B-4EDE-8146-C97609996002}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{077023C8-6A2B-4EDE-8146-C97609996002}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{077023C8-6A2B-4EDE-8146-C97609996002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32374040-4D0A-49F1-BA73-27B3659B0CAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32374040-4D0A-49F1-BA73-27B3659B0CAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32374040-4D0A-49F1-BA73-27B3659B0CAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32374040-4D0A-49F1-BA73-27B3659B0CAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
