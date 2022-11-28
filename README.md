@@ -6,7 +6,6 @@ Notes App
 * Run/Debug application.
 * This will open a browser window of the application. 
 
-
 Notes API
 * Set startup project to BT_NotesApp.API.
 * Run/Debug application.
