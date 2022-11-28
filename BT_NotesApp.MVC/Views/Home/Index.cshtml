@@ -1,9 +1,58 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model BT_NotesApp.MVC.Models.NotesListViewModel;
+@{
+    ViewData["Title"] = "Home Page";    
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<div>
+    <div class="text-center">
+        <h1 class="display-4">BoomTown Notes App</h1>
+    </div>
 
+    <div class="notes-action-buttons">
+        @Html.ActionLink("Add Note", "AddNote", "Home", new { @class = "btn btn-primary" })
+    </div>
+
+    <div class="notes-container">
+    @{
+        if (Model.Notes != null && Model.Notes.Count > 0)
+        {
+            <div class="accordion" id="notesAccordion">
+            @foreach (var note in Model.Notes)
+            {
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne_@(note.NoteId)">
+                        <button class="accordion-button"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapse_@(note.NoteId)"
+                                aria-expanded="true"
+                                aria-controls="collapse_@(note.NoteId)">
+                            @note.Title
+                        </button>
+
+                        @Html.ActionLink("View", "ViewNote", "Home", note.NoteId, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Edit", "EditNote", "Home", note.NoteId, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "DeleteNote", "Home", note.NoteId, new { @class = "btn btn-primary" })
+                    </h2>
+                    <div id="collapse_@(note.NoteId)"
+                         class="accordion-collapse collapse show"
+                         aria-labelledby="heading_@(note.NoteId)"
+                         data-bs-parent="#notesAccordion">
+                        <div class="accordion-body">
+                            <strong>@note.Description</strong>
+                            <div>
+                                @note.Contents
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div>No Notes</div>
+        }
+    }
+    </div>
+</div>
