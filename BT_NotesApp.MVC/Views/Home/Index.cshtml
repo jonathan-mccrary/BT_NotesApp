@@ -6,46 +6,58 @@
 <div>
     <div class="text-center">
         <h1 class="display-4">BoomTown Notes App</h1>
+        <h4>View All Notes</h4>
     </div>
 
     <div class="notes-action-buttons">
-        @Html.ActionLink("Add Note", "AddNote", "Home", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Add Note", "AddNote", "Home", "", new { @class = "btn btn-primary" })
     </div>
-
+    <br />
     <div class="notes-container">
     @{
         if (Model.Notes != null && Model.Notes.Count > 0)
         {
             <div class="accordion" id="notesAccordion">
-            @foreach (var note in Model.Notes)
-            {
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne_@(note.NoteId)">
-                        <button class="accordion-button"
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapse_@(note.NoteId)"
-                                aria-expanded="true"
-                                aria-controls="collapse_@(note.NoteId)">
-                            @note.Title
-                        </button>
+                @{
+                    bool first = true;
+                }
+                @foreach (var note in Model.Notes)
+                {
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne_@(note.NoteId)">
+                            <button class="accordion-button @(first ? "" : "collapsed")"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#collapse_@(note.NoteId)"
+                                    aria-expanded="@(first ? "true" : "false")"
+                                    aria-controls="collapse_@(note.NoteId)">
+                                @note.Title
+                            </button>
+                        </h2>
+                        <div id="collapse_@(note.NoteId)"
+                             class="accordion-collapse collapse @(first ? "show" : "")"
+                             aria-labelledby="heading_@(note.NoteId)"
+                             data-bs-parent="#notesAccordion">
+                            <div class="accordion-body">
+                                <div>
+                                    <em>@note.Description</em>
+                                </div>
+                                <div>
+                                    @note.Contents
+                                </div>
+                                <br />
 
-                        @Html.ActionLink("View", "ViewNote", "Home", note.NoteId, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Edit", "EditNote", "Home", note.NoteId, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Delete", "DeleteNote", "Home", note.NoteId, new { @class = "btn btn-primary" })
-                    </h2>
-                    <div id="collapse_@(note.NoteId)"
-                         class="accordion-collapse collapse show"
-                         aria-labelledby="heading_@(note.NoteId)"
-                         data-bs-parent="#notesAccordion">
-                        <div class="accordion-body">
-                            <strong>@note.Description</strong>
-                            <div>
-                                @note.Contents
+                                <div>
+                                    @Html.ActionLink("View", "ViewNote", "Home", new { noteId = note.NoteId }, new { @class = "btn btn-secondary" })
+                                    @Html.ActionLink("Edit", "EditNote", "Home", new { noteId = note.NoteId }, new { @class = "btn btn-secondary" })
+                                    @Html.ActionLink("Delete", "DeleteNote", "Home", new { noteId = note.NoteId }, new { @class = "btn btn-danger" })
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    {
+                        first = false;
+                    }
                 }
             </div>
         }

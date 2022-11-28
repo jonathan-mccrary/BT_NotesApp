@@ -27,31 +27,33 @@ namespace BT_NotesApp.MVC.Controllers
 
         public async Task<IActionResult> SubmitNote(NoteModel model)
         {
-            INoteDTO note = new NoteDTO()
+            if (ModelState.IsValid)
             {
-                IsActive = true,
-                Contents = model.Contents,
-                CreatedDate = model.NoteViewType == NoteViewType.Add
+                INoteDTO note = new NoteDTO()
+                {
+                    IsActive = true,
+                    Contents = model.Contents,
+                    CreatedDate = model.NoteViewType == NoteViewType.Add
                     ? DateTime.Now
                     : model.CreatedDate,
-                Description = model.Description,
-                LastUpdatedDate = DateTime.Now,
-                NoteId = model.NoteViewType == NoteViewType.Add
+                    Description = model.Description,
+                    LastUpdatedDate = DateTime.Now,
+                    NoteId = model.NoteViewType == NoteViewType.Add
                     ? 0
                     : model.NoteId,
-                Title = model.Title
-            };
+                    Title = model.Title
+                };
 
-            if (model.NoteViewType == NoteViewType.Add)
-            {
-                await _notesService.AddNewNoteAsync(note);
+                if (model.NoteViewType == NoteViewType.Add)
+                {
+                    var id = await _notesService.AddNewNoteAsync(note);
+                }
+                else
+                {
+                    await _notesService.EditNoteAsync(note);
+                }
             }
-            else
-            {
-                await _notesService.EditNoteAsync(note);
-            }
-
-            return View("Home");
+            return Redirect("~/Home/Index");
         }
     }
 }

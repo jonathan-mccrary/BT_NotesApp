@@ -4,9 +4,79 @@
     ViewData["Title"] = "Note View";
 }
 
-@Html.BeginForm()
+@using (@Html.BeginForm("SubmitNote", "Note"))
 {
-    <div>
-
+<div>
+    <div class="text-center">
+        <h1 class="display-4">BoomTown Notes App</h1>
+        <h4>Note View</h4>
     </div>
+    @if (Model.NoteViewType != NoteViewType.Add)
+    {
+        <div class="mb-3">
+            @Html.LabelFor(p => p.NoteId, new { @class = "form-label" })
+            @Html.TextBoxFor(p => p.NoteId, new { @class = "form-control", @disabled = "disabled" })
+        </div>
+    }
+
+    <div class="mb-3">
+        @Html.LabelFor(p => p.Title, new { @class = "form-label" })
+        @if (Model.NoteViewType == NoteViewType.View)
+        {
+            @Html.TextBoxFor(p => p.Title, new { @class = "form-control", @disabled = "disabled" })
+        }
+        else
+        {
+            @Html.TextBoxFor(p => p.Title, new { @class = "form-control" })
+        }
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(p => p.Description, new { @class = "form-label" })
+        @if (Model.NoteViewType == NoteViewType.View)
+        {
+            @Html.TextBoxFor(p => p.Description, new { @class = "form-control", @disabled = "disabled" })
+        }
+        else
+        {
+            @Html.TextBoxFor(p => p.Description, new { @class = "form-control" })
+        }
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(p => p.Contents, new { @class = "form-label" })
+        @if (Model.NoteViewType == NoteViewType.View)
+        {
+            @Html.TextAreaFor(p => p.Contents, new { @class = "form-control", @disabled = "disabled" })
+        }
+        else
+        {
+            @Html.TextAreaFor(p => p.Contents, new { @class = "form-control" })
+        }
+    </div>
+
+    @if (Model.NoteViewType != NoteViewType.Add)
+    {
+        <div class="mb-3">
+            @Html.LabelFor(p => p.CreatedDate, new { @class = "form-label" })
+            @Html.TextBoxFor(p => p.CreatedDate, new { @class = "form-control", @disabled = "disabled" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(p => p.LastUpdatedDate, new { @class = "form-label" })
+            @Html.TextBoxFor(p => p.LastUpdatedDate, new { @class = "form-control", @disabled = "disabled" })
+        </div>
+    }
+
+    @Html.HiddenFor(p => p.NoteId)
+    @Html.HiddenFor(p => p.CreatedDate)
+    @Html.HiddenFor(p => p.LastUpdatedDate)
+    @Html.HiddenFor(p => p.NoteViewType)
+    @Html.HiddenFor(p => p.IsActive)
+
+    @if (Model.NoteViewType != NoteViewType.View)
+    {
+        <button type="submit" class="btn btn-primary">Submit</button>
+    }
+
+    @Html.ActionLink("Home", "Index", "Home", "", new { @class = "btn btn-secondary" })
+</div>
 }

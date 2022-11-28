@@ -30,6 +30,7 @@ public class HomeController : Controller
     {
         NoteModel model = new NoteModel();
         model.NoteViewType = NoteViewType.Add;
+        model.IsActive = true;
 
         return View("NoteView", model);
     }
@@ -49,6 +50,35 @@ public class HomeController : Controller
                 NoteId = note.NoteId,
                 Title = note.Title,
                 NoteViewType = NoteViewType.Edit
+            };
+            return View("NoteView", model);
+        }
+        else
+        {
+            ErrorViewModel model = new ErrorViewModel()
+            {
+                Message = "Note not found."
+            };
+            return View("Error", model);
+        }
+    }
+
+    [HttpGet("{noteId}")]
+    public async Task<IActionResult> GoToNote(long noteId)
+    {
+        var note = await _notesService.GetNoteAsync(noteId);
+        if (note != null)
+        {
+            NoteModel model = new NoteModel()
+            {
+                Contents = note.Contents,
+                CreatedDate = note.CreatedDate,
+                Description = note.Description,
+                IsActive = note.IsActive,
+                LastUpdatedDate = note.LastUpdatedDate,
+                NoteId = note.NoteId,
+                Title = note.Title,
+                NoteViewType = NoteViewType.View
             };
             return View("NoteView", model);
         }
@@ -88,6 +118,12 @@ public class HomeController : Controller
             };
             return View("Error", model);
         }
+    }
+
+    public async Task<IActionResult> DeleteNote(long noteId)
+    {
+        await _notesService.DeleteNoteAsync(noteId);
+        return View("Index");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
