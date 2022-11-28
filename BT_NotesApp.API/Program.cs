@@ -29,8 +29,8 @@ internal class Program
         builder.Services.Configure<Program>(configuration);
         builder.Services.AddSingleton(provider => configuration);
 
-        builder.Services.ConfigureDependencies();
         builder.Services.ConfigureLogging();
+        builder.Services.ConfigureDependencies();
         builder.Services.ConfigureDbContext();
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

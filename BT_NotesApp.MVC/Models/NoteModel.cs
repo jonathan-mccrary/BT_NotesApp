@@ -12,14 +12,14 @@ namespace BT_NotesApp.MVC.Models
 
         public long NoteId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Title is required")]
         [MaxLength(50)]
         public string Title { get; set; }
 
         [MaxLength(200)]
         public string Description { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Contents is required")]
         [MaxLength(2000)]
         public string Contents { get; set; }
 

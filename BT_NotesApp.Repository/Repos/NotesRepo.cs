@@ -3,16 +3,20 @@ using BT_NotesApp.Domain.Contracts.Repos;
 using BT_NotesApp.Domain.Entities;
 using BT_NotesApp.Repository.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BT_NotesApp.Repository.Repos
 {
 	public class NotesRepo : INotesRepo
 	{
+        private readonly ILogger<NotesRepo> _logger;
         private readonly NotesAppContext _context;
-        public NotesRepo(NotesAppContext context)
+        public NotesRepo(NotesAppContext context,
+            ILogger<NotesRepo> logger)
 		{
             _context = context;
+            _logger = logger;
         }
 
         /// <summary>
@@ -21,7 +25,15 @@ namespace BT_NotesApp.Repository.Repos
         /// <returns></returns>
         public async Task<List<Note>> GetAllNotesAsync()
         {
-            return await _context.Notes.ToListAsync();
+            try
+            {
+                return await _context.Notes.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error at NotesRepo.GetAllNotesAsync: {ex.Message}");
+                return await Task.FromException<List<Note>>(ex);
+            }
         }
 
         /// <summary>
@@ -30,7 +42,15 @@ namespace BT_NotesApp.Repository.Repos
         /// <returns></returns>
         public async Task<List<Note>> GetAllActiveNotesAsync()
         {
-            return await _context.Notes.Where(p => p.IsActive == true).ToListAsync();
+            try
+            {
+                return await _context.Notes.Where(p => p.IsActive == true).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error at NotesRepo.GetAllActiveNotesAsync: {ex.Message}");
+                return await Task.FromException<List<Note>>(ex);
+            }
         }
 
         /// <summary>
@@ -40,11 +60,19 @@ namespace BT_NotesApp.Repository.Repos
         /// <returns></returns>
         public async Task<List<Note>> SearchNotesAsync(string keyword)
         {
-            return await _context.Notes.Where(p =>
-                EF.Functions.Like(p.Contents.ToLower(), "%" + keyword.ToLower() + "%")
-                || EF.Functions.Like(p.Title.ToLower(), "%" + keyword.ToLower() + "%")
-                || EF.Functions.Like(p.Description.ToLower(), "%" + keyword.ToLower() + "%"))
-                .ToListAsync();
+            try
+            {
+                return await _context.Notes.Where(p =>
+                        EF.Functions.Like(p.Contents.ToLower(), "%" + keyword.ToLower() + "%")
+                        || EF.Functions.Like(p.Title.ToLower(), "%" + keyword.ToLower() + "%")
+                        || EF.Functions.Like(p.Description.ToLower(), "%" + keyword.ToLower() + "%"))
+                        .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error at NotesRepo.SearchNotesAsync: {ex.Message}");
+                return await Task.FromException<List<Note>>(ex);
+            }
         }
 
         /// <summary>
@@ -54,7 +82,15 @@ namespace BT_NotesApp.Repository.Repos
         /// <returns></returns>
         public async Task<Note?> GetNoteAsync(long noteId)
         {
-            return await _context.Notes.FirstOrDefaultAsync(p => p.NoteId == noteId);
+            try
+            {
+                return await _context.Notes.FirstOrDefaultAsync(p => p.NoteId == noteId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error at NotesRepo.GetNoteAsync: {ex.Message}");
+                return await Task.FromException<Note?>(ex);
+            }
         }
 
         /// <summary>
@@ -64,12 +100,20 @@ namespace BT_NotesApp.Repository.Repos
         /// <returns></returns>
         public async Task<long> AddNoteAsync(Note note)
         {
-            note.CreatedDate = DateTime.Now;
-            note.LastUpdatedDate = DateTime.Now;
-            note.IsActive = true;
-            _context.Notes.Add(note);
-            await _context.SaveChangesAsync();
-            return note.NoteId;
+            try
+            {
+                note.CreatedDate = DateTime.Now;
+                note.LastUpdatedDate = DateTime.Now;
+                note.IsActive = true;
+                _context.Notes.Add(note);
+                await _context.SaveChangesAsync();
+                return note.NoteId;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error at NotesRepo.AddNoteAsync: {ex.Message}");
+                return await Task.FromException<long>(ex);
+            }
         }
 
         /// <summary>
@@ -79,16 +123,24 @@ namespace BT_NotesApp.Repository.Repos
         /// <returns></returns>
         public async Task EditNoteAsync(Note note)
         {
-            Note? current = await _context.Notes.FirstOrDefaultAsync(p => p.NoteId == note.NoteId);
-
-            if (current != null)
+            try
             {
-                current.Contents = note.Contents;
-                current.Description = note.Description;
-                current.IsActive = note.IsActive;
-                current.Title = note.Title;
-                current.LastUpdatedDate = DateTime.Now;
-                await _context.SaveChangesAsync();
+                Note? current = await _context.Notes.FirstOrDefaultAsync(p => p.NoteId == note.NoteId);
+
+                if (current != null)
+                {
+                    current.Contents = note.Contents;
+                    current.Description = note.Description;
+                    current.IsActive = note.IsActive;
+                    current.Title = note.Title;
+                    current.LastUpdatedDate = DateTime.Now;
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error at NotesRepo.EditNoteAsync: {ex.Message}");
+                await Task.FromException(ex);
             }
         }
 
@@ -99,11 +151,19 @@ namespace BT_NotesApp.Repository.Repos
         /// <returns></returns>
         public async Task DeleteNoteAsync(long noteId)
         {
-            Note? current = await _context.Notes.FirstOrDefaultAsync(p => p.NoteId == noteId);
-            if (current != null)
+            try
             {
-                _context.Remove(current);
-                await _context.SaveChangesAsync();
+                Note? current = await _context.Notes.FirstOrDefaultAsync(p => p.NoteId == noteId);
+                if (current != null)
+                {
+                    _context.Remove(current);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error at NotesRepo.DeleteNoteAsync: {ex.Message}");
+                await Task.FromException(ex);
             }
         }
 
@@ -114,12 +174,20 @@ namespace BT_NotesApp.Repository.Repos
         /// <returns></returns>
         public async Task DeactivateNoteAsync(long noteId)
         {
-            Note? current = await _context.Notes.FirstOrDefaultAsync(p => p.NoteId == noteId);
-            if (current != null)
+            try
             {
-                current.LastUpdatedDate = DateTime.Now;
-                current.IsActive = false;
-                await _context.SaveChangesAsync();
+                Note? current = await _context.Notes.FirstOrDefaultAsync(p => p.NoteId == noteId);
+                if (current != null)
+                {
+                    current.LastUpdatedDate = DateTime.Now;
+                    current.IsActive = false;
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error at NotesRepo.DeactivateNoteAsync: {ex.Message}");
+                await Task.FromException(ex);
             }
         }
     }

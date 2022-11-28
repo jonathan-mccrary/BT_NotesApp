@@ -21,6 +21,7 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
+        _logger.LogInformation("Loading home page");
         NotesListViewModel model = new NotesListViewModel();
         model.Notes = await _notesService.GetAllNotesAsync();
         return View(model);
@@ -28,6 +29,7 @@ public class HomeController : Controller
 
     public IActionResult AddNote()
     {
+        _logger.LogInformation("Adding Note");
         NoteModel model = new NoteModel();
         model.NoteViewType = NoteViewType.Add;
         model.IsActive = true;
@@ -37,6 +39,7 @@ public class HomeController : Controller
 
     public async Task<IActionResult> EditNote(long noteId)
     {
+        _logger.LogInformation($"Editing Note {noteId}");
         var note = await _notesService.GetNoteAsync(noteId);
         if (note != null)
         {
@@ -55,6 +58,7 @@ public class HomeController : Controller
         }
         else
         {
+            _logger.LogInformation($"Note {noteId} not found");
             ErrorViewModel model = new ErrorViewModel()
             {
                 Message = "Note not found."
@@ -66,6 +70,7 @@ public class HomeController : Controller
     [HttpGet("{noteId}")]
     public async Task<IActionResult> GoToNote(long noteId)
     {
+        _logger.LogInformation($"Go To Note {noteId}");
         var note = await _notesService.GetNoteAsync(noteId);
         if (note != null)
         {
@@ -84,6 +89,7 @@ public class HomeController : Controller
         }
         else
         {
+            _logger.LogInformation($"Note {noteId} not found");
             ErrorViewModel model = new ErrorViewModel()
             {
                 Message = "Note not found."
@@ -94,6 +100,7 @@ public class HomeController : Controller
 
     public async Task<IActionResult> ViewNote(long noteId)
     {
+        _logger.LogInformation($"Viewing Note {noteId}");
         var note = await _notesService.GetNoteAsync(noteId);
         if (note != null)
         {
@@ -112,6 +119,7 @@ public class HomeController : Controller
         }
         else
         {
+            _logger.LogInformation($"Note {noteId} not found");
             ErrorViewModel model = new ErrorViewModel()
             {
                 Message = "Note not found."
@@ -122,6 +130,7 @@ public class HomeController : Controller
 
     public async Task<IActionResult> DeleteNote(long noteId)
     {
+        _logger.LogInformation($"Deleting Note {noteId}");
         await _notesService.DeleteNoteAsync(noteId);
         return Redirect("~/Home/Index");
     }

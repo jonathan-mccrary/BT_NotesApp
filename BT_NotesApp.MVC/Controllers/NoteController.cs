@@ -26,8 +26,13 @@ namespace BT_NotesApp.MVC.Controllers
             _notesService = notesService;
         }
 
-        public async Task<IActionResult> SubmitNote(NoteModel model)
+        public async Task<IActionResult> NoteView(NoteModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             INoteDTO note = new NoteDTO()
             {
                 IsActive = true,

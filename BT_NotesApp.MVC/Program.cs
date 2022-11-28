@@ -12,6 +12,12 @@ internal class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
+        builder.Services.AddRazorPages().AddMvcOptions(options =>
+        {
+            options.MaxModelValidationErrors = 50;
+            options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(_ => "The field is required.");
+        });
+
         var configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
             .AddEnvironmentVariables()
@@ -20,8 +26,8 @@ internal class Program
         builder.Services.Configure<Program>(configuration);
         builder.Services.AddSingleton(provider => configuration);
 
-        builder.Services.ConfigureDependencies();
         builder.Services.ConfigureLogging();
+        builder.Services.ConfigureDependencies();
         builder.Services.ConfigureDbContext();
 
         var app = builder.Build();

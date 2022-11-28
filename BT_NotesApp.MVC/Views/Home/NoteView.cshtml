@@ -4,101 +4,112 @@
     ViewData["Title"] = "Note View";
 }
 
-@using (@Html.BeginForm("SubmitNote", "Note"))
+@using (@Html.BeginForm("NoteView", "Note"))
 {
-<div>
-    <div class="text-center">
-        <h1 class="display-4">BoomTown Notes App</h1>
-        <h4>
-            @(Model.NoteViewType == NoteViewType.Add ? "Add" :
-            Model.NoteViewType == NoteViewType.Edit ? "Edit" : "View") Note
-        </h4>
-        @if (Model.IsValid)
-        {
-            <h5 style="color: red">Model Invalid</h5>
-        }
-    </div>
-    @if (Model.NoteViewType != NoteViewType.Add)
-    {
-        <div class="mb-3">
-            @Html.LabelFor(p => p.NoteId, "Note Id", new { @class = "form-label" })
-            @Html.TextBoxFor(p => p.NoteId, new { @class = "form-control", @disabled = "disabled" })
+    @Html.ValidationSummary(true)
+    <div class="container">
+        <div class="text-center">
+            <h1 class="display-4">BoomTown Notes App</h1>
+            <h4>
+                <span>
+                    @(Model.NoteViewType == NoteViewType.Add ? "Add" :
+                Model.NoteViewType == NoteViewType.Edit ? "Edit" : "View") Note
+                </span>
+                @if (Model.NoteViewType != NoteViewType.Add)
+                {
+                    <span> - @Model.NoteId</span>
+                }
+            </h4>
+            @if (Model.IsValid)
+            {
+                <h5 style="color: red">Model Invalid</h5>
+            }
         </div>
-    }
-
-    <div class="mb-3">
-        @Html.LabelFor(p => p.Title, new { @class = "form-label" })
-        @if (Model.NoteViewType == NoteViewType.View)
-        {
-            @Html.TextBoxFor(p => p.Title, new { @class = "form-control", @disabled = "disabled" })
-        }
-        else
-        {
-            @Html.TextBoxFor(p => p.Title, new { @class = "form-control", @maxlength = "50" })
-            @Html.ValidationMessageFor(p => p.Title);
-        }
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(p => p.Description, new { @class = "form-label" })
-        @if (Model.NoteViewType == NoteViewType.View)
-        {
-            @Html.TextBoxFor(p => p.Description, new { @class = "form-control", @disabled = "disabled" })
-        }
-        else
-        {
-            @Html.TextBoxFor(p => p.Description, new { @class = "form-control", @maxlength = "200" })
-            @Html.ValidationMessageFor(p => p.Description);
-        }
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(p => p.Contents, new { @class = "form-label" })
-        @if (Model.NoteViewType == NoteViewType.View)
-        {
-            @Html.TextAreaFor(p => p.Contents, new { @class = "form-control", @disabled = "disabled" })
-        }
-        else
-        {
-            @Html.TextAreaFor(p => p.Contents, new { @class = "form-control", @maxlength = "2000" })
-            @Html.ValidationMessageFor(p => p.Contents);
-        }
-    </div>
-
-    @if (Model.NoteViewType != NoteViewType.Add)
-    {
-        <div class="mb-3">
-            @Html.LabelFor(p => p.CreatedDate, "Created Date", new { @class = "form-label" })
-            @Html.TextBoxFor(p => p.CreatedDate, new { @class = "form-control", @disabled = "disabled" })
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    @Html.LabelFor(p => p.Title, new { @class = "form-label" })
+                    @if (Model.NoteViewType == NoteViewType.View)
+                    {
+                        @Html.TextBoxFor(p => p.Title, new { @class = "form-control", @disabled = "disabled" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(p => p.Title, new { @class = "form-control", @maxlength = "50" })
+                        @Html.ValidationMessageFor(p => p.Title);
+                    }
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    @Html.LabelFor(p => p.Description, new { @class = "form-label" })
+                    @if (Model.NoteViewType == NoteViewType.View)
+                    {
+                        @Html.TextBoxFor(p => p.Description, new { @class = "form-control", @disabled = "disabled" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(p => p.Description, new { @class = "form-control", @maxlength = "200" })
+                        @Html.ValidationMessageFor(p => p.Description);
+                    }
+                </div>
+            </div>
         </div>
 
-        <div class="mb-3">
-            @Html.LabelFor(p => p.LastUpdatedDate, "Last Updated Date", new { @class = "form-label" })
-            @Html.TextBoxFor(p => p.LastUpdatedDate, new { @class = "form-control", @disabled = "disabled" })
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    @Html.LabelFor(p => p.Contents, new { @class = "form-label" })
+                    @if (Model.NoteViewType == NoteViewType.View)
+                    {
+                        @Html.TextAreaFor(p => p.Contents, new { @class = "form-control", @disabled = "disabled" })
+                    }
+                    else
+                    {
+                        @Html.TextAreaFor(p => p.Contents, new { @class = "form-control", @maxlength = "2000" })
+                        @Html.ValidationMessageFor(p => p.Contents);
+                    }
+                </div>
+            </div>
         </div>
-    }
+        @if (Model.NoteViewType != NoteViewType.Add)
+        {
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        @Html.LabelFor(p => p.CreatedDate, "Created Date", new { @class = "form-label" })
+                        @Html.TextBoxFor(p => p.CreatedDate, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        @Html.LabelFor(p => p.LastUpdatedDate, "Last Updated Date", new { @class = "form-label" })
+                        @Html.TextBoxFor(p => p.LastUpdatedDate, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+            </div>
+        }
 
-    @Html.HiddenFor(p => p.NoteId)
-    @Html.HiddenFor(p => p.CreatedDate)
-    @Html.HiddenFor(p => p.LastUpdatedDate)
-    @Html.HiddenFor(p => p.NoteViewType)
-    @Html.HiddenFor(p => p.IsActive)
+        @Html.HiddenFor(p => p.NoteId)
+        @Html.HiddenFor(p => p.CreatedDate)
+        @Html.HiddenFor(p => p.LastUpdatedDate)
+        @Html.HiddenFor(p => p.NoteViewType)
+        @Html.HiddenFor(p => p.IsActive)
 
-    @if (Model.NoteViewType != NoteViewType.View)
-    {
-        <button type="submit" class="btn btn-primary">Submit</button>
-    }
-
-    @if (Model.NoteViewType == NoteViewType.View)
-    {
-        @Html.ActionLink("Edit", "EditNote", "Home", new { noteId = Model.NoteId }, new { @class = "btn btn-secondary" })
-    }
-
-    @if (Model.NoteViewType == NoteViewType.View
-            || Model.NoteViewType == NoteViewType.Edit)
-    {
-        @Html.ActionLink("Delete", "DeleteNote", "Home", new { noteId = Model.NoteId }, new { @class = "btn btn-danger" })
-    }
-
-
-    @Html.ActionLink("Home", "Index", "Home", "", new { @class = "btn btn-secondary" })
-</div>
+        <div>
+            @if (Model.NoteViewType != NoteViewType.View)
+            {
+                <button type="submit" class="btn btn-primary">Submit</button>
+            }
+            @if (Model.NoteViewType == NoteViewType.View)
+            {
+                @Html.ActionLink("Edit", "EditNote", "Home", new { noteId = Model.NoteId }, new { @class = "btn btn-secondary" })
+            }
+            @if (Model.NoteViewType == NoteViewType.View || Model.NoteViewType == NoteViewType.Edit)
+            {
+                @Html.ActionLink("Delete", "DeleteNote", "Home", new { noteId = Model.NoteId }, new { @class = "btn btn-danger" })
+            }
+            @Html.ActionLink("Home", "Index", "Home", "", new { @class = "btn btn-secondary" })
+        </div>
+    </div>
 }
