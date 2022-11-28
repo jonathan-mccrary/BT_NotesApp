@@ -9,12 +9,19 @@
 <div>
     <div class="text-center">
         <h1 class="display-4">BoomTown Notes App</h1>
-        <h4>Note View</h4>
+        <h4>
+            @(Model.NoteViewType == NoteViewType.Add ? "Add" :
+            Model.NoteViewType == NoteViewType.Edit ? "Edit" : "View") Note
+        </h4>
+        @if (Model.IsValid)
+        {
+            <h5 style="color: red">Model Invalid</h5>
+        }
     </div>
     @if (Model.NoteViewType != NoteViewType.Add)
     {
         <div class="mb-3">
-            @Html.LabelFor(p => p.NoteId, new { @class = "form-label" })
+            @Html.LabelFor(p => p.NoteId, "Note Id", new { @class = "form-label" })
             @Html.TextBoxFor(p => p.NoteId, new { @class = "form-control", @disabled = "disabled" })
         </div>
     }
@@ -27,7 +34,8 @@
         }
         else
         {
-            @Html.TextBoxFor(p => p.Title, new { @class = "form-control" })
+            @Html.TextBoxFor(p => p.Title, new { @class = "form-control", @maxlength = "50" })
+            @Html.ValidationMessageFor(p => p.Title);
         }
     </div>
     <div class="mb-3">
@@ -38,7 +46,8 @@
         }
         else
         {
-            @Html.TextBoxFor(p => p.Description, new { @class = "form-control" })
+            @Html.TextBoxFor(p => p.Description, new { @class = "form-control", @maxlength = "200" })
+            @Html.ValidationMessageFor(p => p.Description);
         }
     </div>
     <div class="mb-3">
@@ -49,19 +58,20 @@
         }
         else
         {
-            @Html.TextAreaFor(p => p.Contents, new { @class = "form-control" })
+            @Html.TextAreaFor(p => p.Contents, new { @class = "form-control", @maxlength = "2000" })
+            @Html.ValidationMessageFor(p => p.Contents);
         }
     </div>
 
     @if (Model.NoteViewType != NoteViewType.Add)
     {
         <div class="mb-3">
-            @Html.LabelFor(p => p.CreatedDate, new { @class = "form-label" })
+            @Html.LabelFor(p => p.CreatedDate, "Created Date", new { @class = "form-label" })
             @Html.TextBoxFor(p => p.CreatedDate, new { @class = "form-control", @disabled = "disabled" })
         </div>
 
         <div class="mb-3">
-            @Html.LabelFor(p => p.LastUpdatedDate, new { @class = "form-label" })
+            @Html.LabelFor(p => p.LastUpdatedDate, "Last Updated Date", new { @class = "form-label" })
             @Html.TextBoxFor(p => p.LastUpdatedDate, new { @class = "form-control", @disabled = "disabled" })
         </div>
     }
@@ -76,6 +86,18 @@
     {
         <button type="submit" class="btn btn-primary">Submit</button>
     }
+
+    @if (Model.NoteViewType == NoteViewType.View)
+    {
+        @Html.ActionLink("Edit", "EditNote", "Home", new { noteId = Model.NoteId }, new { @class = "btn btn-secondary" })
+    }
+
+    @if (Model.NoteViewType == NoteViewType.View
+            || Model.NoteViewType == NoteViewType.Edit)
+    {
+        @Html.ActionLink("Delete", "DeleteNote", "Home", new { noteId = Model.NoteId }, new { @class = "btn btn-danger" })
+    }
+
 
     @Html.ActionLink("Home", "Index", "Home", "", new { @class = "btn btn-secondary" })
 </div>

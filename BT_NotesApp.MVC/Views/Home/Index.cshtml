@@ -39,10 +39,12 @@
                              aria-labelledby="heading_@(note.NoteId)"
                              data-bs-parent="#notesAccordion">
                             <div class="accordion-body">
-                                <div>
+                                <div style="word-wrap: break-word;">
+                                    <strong>ID: @note.NoteId</strong>
+                                    <span> - </span>
                                     <em>@note.Description</em>
                                 </div>
-                                <div>
+                                <div style="word-wrap: break-word;">
                                     @note.Contents
                                 </div>
                                 <br />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BT_NotesApp.Domain.Contracts.DTOs;
 using BT_NotesApp.Domain.Contracts.Service;
+using BT_NotesApp.Domain.Entities;
 using BT_NotesApp.Domain.Models;
 using BT_NotesApp.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -27,34 +28,30 @@ namespace BT_NotesApp.MVC.Controllers
 
         public async Task<IActionResult> SubmitNote(NoteModel model)
         {
-            if (ModelState.IsValid)
+            INoteDTO note = new NoteDTO()
             {
-                INoteDTO note = new NoteDTO()
-                {
-                    IsActive = true,
-                    Contents = model.Contents,
-                    CreatedDate = model.NoteViewType == NoteViewType.Add
+                IsActive = true,
+                Contents = model.Contents,
+                CreatedDate = model.NoteViewType == NoteViewType.Add
                     ? DateTime.Now
                     : model.CreatedDate,
-                    Description = model.Description,
-                    LastUpdatedDate = DateTime.Now,
-                    NoteId = model.NoteViewType == NoteViewType.Add
+                Description = model.Description,
+                LastUpdatedDate = DateTime.Now,
+                NoteId = model.NoteViewType == NoteViewType.Add
                     ? 0
                     : model.NoteId,
-                    Title = model.Title
-                };
+                Title = model.Title
+            };
 
-                if (model.NoteViewType == NoteViewType.Add)
-                {
-                    var id = await _notesService.AddNewNoteAsync(note);
-                }
-                else
-                {
-                    await _notesService.EditNoteAsync(note);
-                }
+            if (model.NoteViewType == NoteViewType.Add)
+            {
+                var id = await _notesService.AddNewNoteAsync(note);
+            }
+            else
+            {
+                await _notesService.EditNoteAsync(note);
             }
             return Redirect("~/Home/Index");
         }
     }
 }
-

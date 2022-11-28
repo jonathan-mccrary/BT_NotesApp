@@ -123,7 +123,7 @@ public class HomeController : Controller
     public async Task<IActionResult> DeleteNote(long noteId)
     {
         await _notesService.DeleteNoteAsync(noteId);
-        return View("Index");
+        return Redirect("~/Home/Index");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
